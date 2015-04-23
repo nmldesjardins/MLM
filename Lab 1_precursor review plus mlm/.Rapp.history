@@ -1,0 +1,212 @@
+library(TripleR;foreign)
+library(TripleR)
+data2010<-read.csv("2010_RawRoundRobinData.csv")
+head(data2010)
+RR.style('p')
+T1results<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", varlist=c("T11ext","T12cri","T13dep","T14anx","T15ope","T16res","T17sym","T18dis","T19cal","T110con","T111arr","T112int","T113fun","T114exa","T115lik","T116phy","T117status","T118expr","T119trust","T120like","T121coa","T122def","T123share","T124judge","T11extMP","T12criMP","T13depMP","T14anxMP","T15opeMP","T16resMP","T17symMP","T18disMP","T19calMP","T110conMP","T111arrMP","T112intMP","T113funMP","T114exaMP","T115likMP","T116phyMP","T117statusMP","T118exprMP","T119trustMP","T120likeMP","T121compaMP","T122defMP","T123shareMP"))
+head(T1results)
+T2results<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", varlist=c("T21ext",	"T22cri",	"T23dep",	"T24anx",	"T25ope",	"T26res",	"T27sym",	"T28dis",	"T29cal",	"T210con",	"T211arr",	"T212int",	"T213fun",	"T214exa",	"T215lik",	"T216phy",	"T217status",	"T218expr",	"T219trust",	"T220like",	"T221coa",	"T222def",	"T223share",	"T224iulsive",	"T225judgments","T21extMP","T22criMP","T23depMP","T24anxMP","T25opeMP","T26resMP","T27symMP","T28disMP","T29calMP","T210conMP","T211arrMP","T212intMP","T213funMP","T214exaMP","T215likMP","T216phyMP","T217statusMP","T218exprMP","T219trustMP","T220likeMP","T221compaMP","T222defMP","T223shareMP") )#
+#
+T3results<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", varlist=c("T31ext",	"T32cri",	"T33dep",	"T34anx",	"T35ope",	"T36res",	"T37sym",	"T38dis",	"T39cal",	"T310con",	"T311arr",	"T312int",	"T313fun",	"T314exa",	"T315lik",	"T316phy",	"T317status",	"T318expr",	"T319trust",	"T320like",	"T321coa",	"T322def",	"T323share",	"T324iulsive",	"T325judge",	"T327know","T31extMP","T32criMP","T33depMP","T34anxMP","T35opeMP","T36resMP","T37symMP","T38disMP","T39calMP","T310conMP","T311arrMP","T312intMP","T313funMP","T314exaMP","T315likMP","T316phyMP","T317statusMP","T318exprMP","T319trustMP","T320likeMP","T321compaMP","T322defMP","T323shareMP") )
+T1T2<-merge(T1results,T2results, by=c("id"), all=T)#
+T1T2T3<-merge(T1T2,T3results,by=c("id"),all=T)
+write.csv(T1T2T3,file="TripleR2010_centeredeffects.csv")
+?getEffects
+T1results.gm<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", gm=TRUE, varlist=c("T11ext","T12cri","T13dep","T14anx","T15ope","T16res","T17sym","T18dis","T19cal","T110con","T111arr","T112int","T113fun","T114exa","T115lik","T116phy","T117status","T118expr","T119trust","T120like","T121coa","T122def","T123share","T124judge","T11extMP","T12criMP","T13depMP","T14anxMP","T15opeMP","T16resMP","T17symMP","T18disMP","T19calMP","T110conMP","T111arrMP","T112intMP","T113funMP","T114exaMP","T115likMP","T116phyMP","T117statusMP","T118exprMP","T119trustMP","T120likeMP","T121compaMP","T122defMP","T123shareMP"))
+head(T1results.gm)
+T2results.gm<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", gm=TRUE, varlist=c("T21ext",	"T22cri",	"T23dep",	"T24anx",	"T25ope",	"T26res",	"T27sym",	"T28dis",	"T29cal",	"T210con",	"T211arr",	"T212int",	"T213fun",	"T214exa",	"T215lik",	"T216phy",	"T217status",	"T218expr",	"T219trust",	"T220like",	"T221coa",	"T222def",	"T223share",	"T224iulsive",	"T225judgments","T21extMP","T22criMP","T23depMP","T24anxMP","T25opeMP","T26resMP","T27symMP","T28disMP","T29calMP","T210conMP","T211arrMP","T212intMP","T213funMP","T214exaMP","T215likMP","T216phyMP","T217statusMP","T218exprMP","T219trustMP","T220likeMP","T221compaMP","T222defMP","T223shareMP") )#
+#
+T3results.gm<-getEffects(~T1Rater*T1Target | T1Group, data=data2010,index="enhance", gm=TRUE, varlist=c("T31ext",	"T32cri",	"T33dep",	"T34anx",	"T35ope",	"T36res",	"T37sym",	"T38dis",	"T39cal",	"T310con",	"T311arr",	"T312int",	"T313fun",	"T314exa",	"T315lik",	"T316phy",	"T317status",	"T318expr",	"T319trust",	"T320like",	"T321coa",	"T322def",	"T323share",	"T324iulsive",	"T325judge",	"T327know","T31extMP","T32criMP","T33depMP","T34anxMP","T35opeMP","T36resMP","T37symMP","T38disMP","T39calMP","T310conMP","T311arrMP","T312intMP","T313funMP","T314exaMP","T315likMP","T316phyMP","T317statusMP","T318exprMP","T319trustMP","T320likeMP","T321compaMP","T322defMP","T323shareMP") )
+T1T2.gm<-merge(T1results.gm,T2results.gm, by=c("id"), all=T)#
+T1T2T3.gm<-merge(T1T2,T3results.gm,by=c("id"),all=T)#
+#
+write.csv(T1T2T3,file="TripleR2010_UNcenteredeffects.csv")
+head(T1T2T3.gm)
+head(T1T2T3)
+head(T1result)
+head(T1results)
+head(T2results$id)
+head(T3results$id)
+?getEffects
+?RR
+library(foreign)#
+library(lattice)
+library(foreign)#
+library(lattice)
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+library(lme4)
+summary(parented)
+summary(nels$parented)
+by(nels,Schoolid,summary(nels$parented))
+by(nels,nels$Schoolid,summary(nels$parented))
+by(nels,nels$Schoolid,FUN=summary(nels$parented))
+by(nels,nels$Schoolid,FUN=mean(nels$parented))
+by(nels,nels$Schoolid,mean(nels$parented))
+?by
+model<-lmer(timeonmath~ses+(ses|Schoolid), data=nels)
+summary(model)
+library(lmerTest)
+model<-lmer(timeonmath~ses+(ses|Schoolid), data=nels)
+summary(model)
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,col.line="black",xlab="SES", ylab="Time on Math")
+?xyplot
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p"),col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r"),col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r","g"),col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("r","g"),col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r","g"),col="red", col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r","g"),col="green", col.line="black",xlab="SES", ylab="Time on Math")
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r","g"),col="forest green", col.line="black",xlab="SES", ylab="Time on Math")
+library(nlme)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+summary(model)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="nlminb"))
+?opt
+??opt
+?"optim"
+coef(model)
+names(model)
+fitted(model)
+model$fitted
+head(model$fitted)
+coef(model)
+model$"(Intercept)"
+x<-summary(model)
+x
+x$ses
+names(x)
+x$coefficients
+x$coefficients$fixed
+x$coefficients$fixed[1,]
+x$coefficients$fixed[,1]
+x$coefficients$fixed[1]
+x$coefficients$fixed[2]
+x<-summary(model)#
+#
+# then get the fixed estimate of the intercept:#
+int<-x$coefficients$fixed[1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]
+coef(model)[,1]
+shrink<-as.data.frame((coef(model)[,1]-int))
+shrink
+shrink_int<-as.data.frame((coef(model)[,1]-int),row.names=Schoolid)
+shrink_int<-((coef(model)[,1]-int),row.names=Schoolid)
+shrink_int<-((coef(model)[,1]-int))
+shrink_int
+shrink<-as.data.frame(c(coef(model),(coef(model)[,1]-int),(coef(model)[,2]-slope)))
+shrink
+shrink<-as.data.frame(cbind(coef(model),(coef(model)[,1]-int),(coef(model)[,2]-slope)))
+shrink
+colnames(shrink)<-c("EB intercept","EB slope", "Diff bt fixed and EB int", "Diff bt fixed and EB int")
+shrink
+mean(shrink$"EB intercept")
+int
+model<-lmer(timeonmath~ses+(ses|Schoolid), data=nels)
+coef(model)
+x<-summary(model)
+int<-x$coefficients$fixed[1]
+names(x)
+int<-x$coefficients
+int
+int<-x$coefficients[1,1]
+int
+slope<-x$coefficients[2,1]
+slope
+shrink<-as.data.frame(cbind(coef(model),(coef(model)[,1]-int),(coef(model)[,2]-slope)))
+coef(model)
+coef(model)[,1]
+coef(model)[1,1]
+coef(model)["(Intercept)"]
+coef(model)$"(Intercept)"
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+x<-summary(model)
+int<-x$coefficients$fixed[1]#
+# in lme4, this is:#
+# int<-x$coefficients[1,1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]
+shrink<-as.data.frame(cbind(coef(model),(coef(model)[,1]-int),(coef(model)[,2]-slope)))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")#
+shrink
+mean(shrink$"EB intercept")#
+ int#
+ mean(shrink$"EB slope")#
+ slope
+model2<-lm(timeonmath~ses|as.factor(Schoolid), data=nels)
+model2<-lm(timeonmath~ses*as.factor(Schoolid), data=nels)
+anova(model2)
+summary(model2)
+model<-lme(timeonmath~ses, random=~1|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+summary(model)
+slope
+int
+count(nels$Schoolid)
+summary(nels$Schoolid)
+summary(as.factor(nels$Schoolid))
+cbind(shrink,summary(as.factor(nels$Schoolid)))
+n<-summary(as.factor(nels$Schoolid)))#
+shrink<-cbind(shrink,n)
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+shrink
+heaD(nels)
+head(nels)
+lec7<-lme(mathscore~timeonmath*schooltype, random=~timeonmath*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(lec7)
+x<-summary(lec7)#
+#
+# then get the fixed estimate of the intercept:#
+int7<-x$coefficients$fixed[1]#
+slope7<-x$coefficients$fixed[2]
+x
+slope
+int7
+slope7
+timeslope7<-x$coefficients$fixed[2]
+int7<-x$coefficients$fixed[1]#
+timeslope7<-x$coefficients$fixed[2]#
+pubslope7<-x$coefficients$fixed[3]#
+tXpslope7<-x$coefficients$fixed[4]
+timeslope7
+pubslope7
+shrink7<-as.data.frame(cbind(coef(lec7),(coef(lec7)[,1]-int7),(coef(lec7)[,2]-timeslope7), (coef(lec7)[,3]-pubslope7), (coef(lec7)[,4]-tXpslope7) ))#
+#
+colnames(shrink7)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_interaction")
+shrink7
+colnames(shrink7)<-c("EB intercept","EB time","EB type", "EB interaction","Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_interaction")
+shrink7
+coef(lec7)
+lec7$fitted
+?fitted
+?coef
+lec7b<-lmer(mathscore~timeonmath*schooltype+(timeonmath*schooltype|Schoolid), data=nels)
+summary(lec7)
+lec7b<-lme(mathscore,~1|Schoolid, data=nels
+)
+lec7b<-lme(nesl$mathscore,~1|Schoolid, data=nels, na.action=na.omit)
+lec7b<-lme(nels$mathscore,~1|Schoolid, data=nels, na.action=na.omit)
+lec7b<-lme(mathscore~1,~1|Schoolid, data=nels, na.action=na.omit)
+summary(lec7b)
+coef(lec7b)
+int7<-x$coefficients$fixed[1]
+int7
+(int7-coef(lec7b)[,1])
+int7<-summary(lec7b)$coefficients$fixed[1]
+int7
+(int7-coef(lec7b)[,1])
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+shrink
+coef(model)[,2]
+summary(model)
+coef(model)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model)

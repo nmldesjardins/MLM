@@ -1,0 +1,235 @@
+library(foreign) 	# reads data#
+library(reshape2) 	# restructures data#
+library(psych)		# handy for descriptives#
+library(ggplot2)	# plotting#
+library(lme4)		# run models#
+library(lmerTest)
+ei<-read.dta("earlyint_pp.dta", convert.factors=T)#
+head(ei)#
+str(ei)
+ei.wide<-dcast(ei,#
+	id+program				# id and program are variables that we want to keep the same (they vary at L2)#
+	~age,  					# we want to create new variables based on the age variable#
+	value.var=c("cog"))
+head(ei.wide)
+colnames(ei.wide)<-c("id","program","cog1","cog1.5","cog2")#
+head(ei.wide)
+ei_wide <- reshape(ei, #
+	timevar = "time", 			# identifies the variable that will be used to create new variables for the time-varying measures#
+	idvar = c("id", "program"), # identifies variables that vary at L2 #
+	direction = "wide")			# which way we're going#
+head(ei_wide)
+ei.long<-melt(ei.wide,#
+	id.vars=c("id","program"),  # variable that vary at L2 (i.e., that identify people)#
+	variable.name="age", 		# name of the index variable (i.e., that codes time)#
+	value.name="cog")
+head(ei.long)
+length(ei.long$id)
+length(ei.wide$id)
+levels(ei.long$age)[levels(ei.long$age)=="cog1"]<-1#
+levels(ei.long$age)[levels(ei.long$age)=="cog1.5"]<-1.5#
+levels(ei.long$age)[levels(ei.long$age)=="cog2"]<-2
+ei.long<-ei.long[order(ei.long$id),]
+head(ei.long)
+ei_long <- reshape(ei_wide, #
+	varying= list(c("cog.0", "cog.0.5", "cog.1"), #
+	c("age.0", "age.0.5", "age.1")), 				# variables in the wide dataset that vary#
+	v.names= c("cog", "age"), 						# names of the time variant variable in the new (long) dataset#
+	timevar= "time", 								# variable to be created that will code for time#
+	times= c(0, .5, 1), 							# values of the time variable#
+	direction= "long")
+head(ei_long)
+ei_long<-ei_long[order(ei_long$id),]
+head(ei_long)
+describeBy(ei$cog,ei$time)
+c1<-subset(ei,time==0.0)#
+c2<-subset(ei,time==0.5)#
+c3<-subset(ei,time==1.0)
+c1
+cor(c1$cog,c2$cog,use="pair")#
+#
+# Correlation between T2 and T3:#
+cor(c2$cog,c3$cog,use="pair")#
+#
+# Correlation between T1 and T3:#
+cor(c1$cog,c3$cog,use="pair")
+spaghetti<-ggplot(data=ei, aes(y = cog, x = age)) # sets up initial plot#
+spaghetti + stat_smooth(method=lm,  			  # estimate a linear model with x and y from above#
+	aes(group=id, 								  # estimate separate models for each id	#
+	colour=factor(program)), 					  # plot people who were and were not in the program in different colors	#
+	se = F) +									  # don't print confidence intervals	#
+	ylab("Cognitive Function") + xlab("Age")
+m1 <- lmer(cog ~ 1 + (1 | id), data = ei)#
+summary (m1)
+L1.var<-as.data.frame(VarCorr(m1))[2,4]#
+L2.var<-as.data.frame(VarCorr(m1))[1,4]
+VarCorr(m1)
+as.data.frame(VarCorr(m1))
+icc1<-L2.var/(L1.var+L2.var)#
+icc1
+ei$time2[ei$time==0]<-0#
+ei$time2[ei$time==0.5]<-1#
+ei$time2[ei$time==1.5]<-2
+m2<-lmer(cog~time2 + (time2|id), data=ei)#
+summary(m2)
+head(ei)
+ei$time2[ei$time==1.0]<-2
+head(ei)
+m2<-lmer(cog~time2 + (time2|id), data=ei)#
+summary(m2)
+L1.res.var<-as.data.frame(VarCorr(m2))[4,4]#
+L2.int.var<-as.data.frame(VarCorr(m2))[1,4]#
+L2.slope.var<-as.data.frame(VarCorr(m2))[2,4]
+icc2<-L2.slope.var/(L1.res.var+L2.int.var+L2.slope.var)
+icc2
+m2<-lmer(cog~time + (time|id), data=ei)#
+summary(m2)
+m3<-lmer(cog ~ time2*program + (time2|id), data=ei)#
+summary(m3)
+m2<-lmer(cog~time2 + (time2|id), data=ei)#
+summary(m2)
+anova(m2,m3)
+# save the fixed effects from m3#
+m3_fe <- fixef(m3)	#
+#
+# write the equations for both groups as functions#
+prog0= function(x){													#
+	m3_fe[1] + m3_fe[3]*(0) + m3_fe[2]*(x) + m3_fe[4]*(0)*(x)	#
+	}			#
+prog1= function(x){#
+	m3_fe[1] + m3_fe[3]*(1) + m3_fe[2]*(x) + m3_fe[4]*(1)*(x)#
+	}#
+#
+# make a dataframe that encodes the time variable#
+tmp1<-data.frame(x=seq(from=0,to=2,by=1))		#
+#
+# set the base plot#
+m3_fit <- qplot(x, data=tmp1)					#
+#
+# fancy it up:#
+#
+m3_fit + #
+	stat_function(fun=prog1, linetype="dashed") + # make a dashed line for the people in the program based on the function #
+	 geom_text(aes(label="Program \n participants", x=1.95, y= 89, size=1)) + # label the program group line#
+	stat_function(fun=prog0) +#
+	 geom_text(aes(label="Non-\nparticipants", x=1.95, y= 63, size=1)) +#
+   	theme_bw() +#
+   	theme(panel.grid.major = element_blank(), # don't print grid lines#
+		  panel.grid.minor = element_blank()) +#
+    scale_x_continuous(breaks = c(0, 1, 2), label=c("6 months", "12 months", "18 months"), "Age") +	# label the X axis#
+	scale_y_continuous(limits = c(min(ei_l$cog), max(ei_l$cog)),# restrict the y axis to be within the observed range of cog#
+	                   "Cognitive Performance Score") +		# label the y axis#
+	theme(legend.position="none") # don't print a legend (since you have the line labels)
+# save the fixed effects from m3#
+m3_fe <- fixef(m3)	#
+#
+# write the equations for both groups as functions#
+prog0= function(x){													#
+	m3_fe[1] + m3_fe[3]*(0) + m3_fe[2]*(x) + m3_fe[4]*(0)*(x)	#
+	}			#
+prog1= function(x){#
+	m3_fe[1] + m3_fe[3]*(1) + m3_fe[2]*(x) + m3_fe[4]*(1)*(x)#
+	}#
+#
+# make a dataframe that encodes the time variable#
+tmp1<-data.frame(x=seq(from=0,to=2,by=1))		#
+#
+# set the base plot#
+m3_fit <- qplot(x, data=tmp1)					#
+#
+# fancy it up:#
+#
+m3_fit + #
+	stat_function(fun=prog1, linetype="dashed") + # make a dashed line for the people in the program based on the function #
+	 geom_text(aes(label="Program \n participants", x=1.95, y= 89, size=1)) + # label the program group line#
+	stat_function(fun=prog0) +#
+	 geom_text(aes(label="Non-\nparticipants", x=1.95, y= 63, size=1)) +#
+   	theme_bw() +#
+   	theme(panel.grid.major = element_blank(), # don't print grid lines#
+		  panel.grid.minor = element_blank()) +#
+    scale_x_continuous(breaks = c(0, 1, 2), label=c("6 months", "12 months", "18 months"), "Age") +	# label the X axis#
+	scale_y_continuous(limits = c(min(ei$cog), max(ei$cog)),# restrict the y axis to be within the observed range of cog#
+	                   "Cognitive Performance Score") +		# label the y axis#
+	theme(legend.position="none") # don't print a legend (since you have the line labels)
+wgt<-read.dta("wgt.dta", convert.factors=T)#
+head(wgt)#
+#
+# recode gender (1: male, 2: female) to (0: male, 1: female)#
+wgt$female <- wgt$gender -1
+wgt$age2<-(wgt$age)^2#
+#
+# Try getting the random effects of age, age2 and the intercept:#
+mod4<-lmer(weight~ age + age2 + (age + age2 | id), data=wgt)#
+#
+# Remove the random effect of age2:#
+mod5<-lmer(weight~ age + age2 + (age | id), data=wgt)#
+summary(mod5)
+head(wgt)
+library(foreign) 	# reads data#
+library(reshape2) 	# restructures data#
+library(psych)		# handy for descriptives#
+library(ggplot2)	# plotting#
+library(lme4)		# run models#
+library(lmerTest)	# get significance tests
+ei<-read.dta("earlyint_pp.dta", convert.factors=T)#
+head(ei)#
+str(ei)
+describeBy(ei$cog,ei$time)
+c1<-subset(ei,time==0.0)#
+c2<-subset(ei,time==0.5)#
+c3<-subset(ei,time==1.0)#
+#
+# Correlation between T1 and T2:#
+cor(c1$cog,c2$cog,use="pair")#
+#
+# Correlation between T2 and T3:#
+cor(c2$cog,c3$cog,use="pair")#
+#
+# Correlation between T1 and T3:#
+cor(c1$cog,c3$cog,use="pair")
+spaghetti<-ggplot(data=ei, aes(y = cog, x = age)) # sets up initial plot#
+spaghetti + stat_smooth(method=lm,  			  # estimate a linear model with x and y from above#
+	aes(group=id, 								  # estimate separate models for each id	#
+	colour=factor(program)), 					  # plot people who were and were not in the program in different colors	#
+	se = F) +									  # don't print confidence intervals	#
+	ylab("Cognitive Function") + xlab("Age")      # set axis labels
+ei$time2[ei$time==0]<-0#
+ei$time2[ei$time==0.5]<-1#
+ei$time2[ei$time==1.0]<-2
+m2<-lmer(cog~time2 + (time2|id), data=ei)#
+summary(m2)
+m3<-lmer(cog ~ time2*program + (time2|id), data=ei)#
+summary(m3)
+m3_fe <- fixef(m3)	#
+#
+# write the equations for both groups as functions#
+prog0= function(x){													#
+	m3_fe[1] + m3_fe[3]*(0) + m3_fe[2]*(x) + m3_fe[4]*(0)*(x)	#
+	}			#
+prog1= function(x){#
+	m3_fe[1] + m3_fe[3]*(1) + m3_fe[2]*(x) + m3_fe[4]*(1)*(x)#
+	}#
+#
+# make a dataframe that encodes the time variable#
+tmp1<-data.frame(x=seq(from=0,to=2,by=1))		#
+#
+# set the base plot#
+m3_fit <- qplot(x, data=tmp1)					#
+#
+# fancy it up:#
+#
+m3_fit + #
+	stat_function(fun=prog1, linetype="dashed") + # make a dashed line for the people in the program based on the function #
+	 geom_text(aes(label="Program \n participants", x=1.95, y= 89, size=1)) + # label the program group line#
+	stat_function(fun=prog0) +#
+	 geom_text(aes(label="Non-\nparticipants", x=1.95, y= 63, size=1)) +#
+   	theme_bw() +#
+   	theme(panel.grid.major = element_blank(), # don't print grid lines#
+		  panel.grid.minor = element_blank()) +#
+    scale_x_continuous(breaks = c(0, 1, 2), label=c("6 months", "12 months", "18 months"), "Age") +	# label the X axis#
+	scale_y_continuous(limits = c(min(ei$cog), max(ei$cog)),# restrict the y axis to be within the observed range of cog#
+	                   "Cognitive Performance Score") +		# label the y axis#
+	theme(legend.position="none") # don't print a legend (since you have the line labels)
+9.10*80
+728*2
+105+625

@@ -1,0 +1,488 @@
+library(nlme)
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~time_c|id)
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~occ_c|id)
+wgt$occ_c2<- wgt$occ_c^2#
+wgt$occ_c3<- wgt$occ_c^3
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~occ_c|id)
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~occ_c|id, na.action="exclude", data=wgt)
+?lme
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~occ_c|id, na.exclude, data=wgt)
+mod1<-lme(weight~occ_c+occ_c2+occ_c3, random=~occ_c|id, na.action=na.exclude, data=wgt)
+summary(mod1)
+mod1<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt)
+summary(brthwt)
+?read
+??read
+data<-read.table("hw3a.txt",sep="\t",col.names=c("district","respondant","year","attitude","gender","age83","religpref"), fill = FALSE, strip.white=TRUE)
+?read.table
+data<-read.table("hw3a.txt",sep=" ",col.names=c("district","respondant","year","attitude","gender","age83","religpref"), fill = FALSE, strip.white=TRUE)
+data<-read.table("hw3a.txt",header=FALSE, sep=" ",col.names=c("district","respondant","year","attitude","gender","age83","religpref"), fill = FALSE, strip.white=TRUE)
+data<-read.table("hw3a.txt",header=FALSE, sep=" ",col.names=c("district","respondant","year","attitude","gender","age83","religpref"), fill = FALSE)
+data<-read.table("hw3a.txt",header=FALSE)
+head(data)
+data<-read.table("hw3a.txt",header=FALSE,col.names=c("district","respondant","year","attitude","gender","age83","religpref"))
+head(data)
+length(data$year)
+summary(data$year)
+# recode gender (1: male, 2: female) to (0: male, 1: female)#
+data$female <- data$gender -1#
+#
+# check number of timepoints#
+summary(data$year)#
+#
+# center time @ year 1#
+#
+data$year_c<-data$year - 1.#
+#
+# compute quadratic term.#
+#
+data$year_c2<-data$year_c^2
+mod1<-lme(attitude~year_c, random=~random_c|respondant, na.action=na.exclude, data=data)#
+summary(mod1)
+mod1<-lme(attitude~year_c, random=~ year_c |respondant, na.action=na.exclude, data=data)#
+summary(mod1)
+mod2<-lme(attitude~year_c, random=~ year_c |district/respondant, na.action=na.exclude, data=data)#
+summary(mod2)
+anova(mod1,mod2)
+mod3<-lme(attitude~year_c+year_c2, random=~ year_c+year_c2 |respondant, na.action=na.exclude, data=data)#
+summary(mod3)#
+# unconditional quadratic growth: 3 level #
+mod4<-lme(attitude~year_c+year_c2, random=~ year_c+year_c2 |district/respondant, na.action=na.exclude, data=data)#
+summary(mod4)
+mod3<-lme(attitude~year_c+year_c2, random=~ year_c |respondant, na.action=na.exclude, data=data)#
+summary(mod3)#
+# unconditional quadratic growth: 3 level #
+mod4<-lme(attitude~year_c+year_c2, random=~ year_c|district/respondant, na.action=na.exclude, data=data)#
+summary(mod4)
+mod3<-lme(attitude~year_c+year_c2, random=~ year_c |respondant, na.action=na.exclude, data=data, control=list(opt="optim"))#
+summary(mod3)
+mod3<-lme(attitude~year_c+year_c2, random=~ year_c+year_c2|respondant, na.action=na.exclude, data=data, control=list(opt="optim"))#
+summary(mod3)
+mod5<-lme(attitude~year_c+year_c2, random=~ year_c|district/respondant, na.action=na.exclude, data=data, control=list(opt="optim"))#
+summary(mod5)
+anova(mod4,mod5)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3))))#
+}
+deviance(mod4,mod5)
+mod4<-lme(attitude~year_c+year_c2, random=~ year_c+year_c2|district/respondant, na.action=na.exclude, data=data, control=list(opt="optim"))#
+summary(mod4)
+deviance(mod4,mod5)
+deviance(mod5,mod4)
+anova(mod5,mod4)
+anova(mod4,mod5)
+mod5.AR<-lme(attitude~year_c+year_c2, random=~ year_c|district/respondant, na.action=na.exclude, data=data, control=list(opt="optim"), correlation=corAR1())
+summary(mod5.AR)
+mod5.AR<-update(mod5,correlation=AR1())
+mod5.AR<-update(mod5,correlation=corAR1())
+summary(mod5.AR)
+data<-data[order(year_c),]
+data<-data[order(data$year_c),]
+mod5.AR<-lme(attitude~year_c+year_c2+relig, random=~ year_c|respondant, na.action=na.exclude, data=data, control=list(opt="optim"), correlation=corAR1())
+head(data)
+mod5.AR<-lme(attitude~year_c+year_c2+religpref, random=~ year_c|respondant, na.action=na.exclude, data=data, control=list(opt="optim"), correlation=corAR1())
+summary(mod5.AR)
+names(summary(mod5.AR))
+summary(mod5.AR)$modelStruct
+as.numeric(VarCorr(mod5.AR))
+as.dataframe(VarCorr(mod5.AR))
+as.data.frame(VarCorr(mod5.AR))
+VarCorr(mod5.AR)
+names(mod5.AR)
+tapply(data$attitude,data$year_c,var,na.rm=T)
+?lme
+mod5<-lme(attitude~year_c+year_c2+religpref, random=~ year_c|respondant, na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod5)
+-1905.243*-2
+deviance(mod5,mod5.AR)
+mod.homo<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, na.action=na.exclude, data=data, control=list(opt="optim"))
+mod.AR<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation=corAR1(),na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.hom)
+summary(mod.homo)
+-1905.871*-2
+1.380283^2
+1.154268^2
+summary(mod.AR)
+-1905.695*-2
+anova(mod.homo,mod.AR)
+deviance(mod.homo,mod.AR)
+mod.unst<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation=corSymm(), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.unst)
+?gls
+?correlation
+?nlme
+?corClasses
+?varFunc
+?nlmeObject
+?modelStruct
+modelStruct(mod.homo)
+modelStruct(summary(mod.homo))
+mod.homo$modelStruct
+mod.AR$modelStruct
+mod.unst$modelStruct
+.16*.16
+?reStruct
+?pdClass
+?pdDiag
+?lme
+mod.sph<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation=corSpher(), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.sph)
+anova(mod.homo,mod.sph)
+1.371495^2
+1.164307^2
+summary(mod.homo)
+1.380283^2
+summary(mod.AR,corAR1)
+summary(corAR1)
+corAR1(form=~year_c | respondant)
+corAR1(form=~year_c | respondant, data=data)
+?varFunc
+?varExp
+?weights
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, weights=varFunc(form=~year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+?varFunc
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, weights=varFunc(~year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, weights=varExp(~year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, weights=varExp(form=~year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.heter)
+summary(mod.hetero)
+?varFixed
+?varStruct
+mod.unst<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation=corSymm(), weights=varIdent(form=~1|year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.unst)
+?varIdent
+mod.hetero2<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, weights=varIdent(form=~1|year_c), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.hetero2)
+anova(mod.homo,mod.hetero2)
+-1902.213*-2
+i<-1.381769^2
+i+1
+i+1.36930
+i+1.179198
+i+1.136930
+i+1
+i+1.136930
+i+1.179198
+i+.985297
+i
+1.069775^2
+i+1
+i+(1.136930)^2
+i+(1.136930^)2
+i+(1.136930^2)
+i+(1.179198^2)
+mod.homo2<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation = corCompSymm, na.action=na.exclude, data=data, control=list(opt="optim"))
+mod.homo2<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation = corCompSymm(), na.action=na.exclude, data=data, control=list(opt="optim"))
+summary(mod.homo)
+summary(mod.homo2)
+anova(mod.homo,mod.homo2)
+library(nlme)#
+data<-read.table("hw3a.txt",header=FALSE,col.names=c("district","respondant","year","attitude","gender","age83","religpref"))
+head(data)
+sink(file="H3Q3.doc", split=T)#
+#
+## all models predict attitudes from a linear and quadratic growth term (year, centered @ year 1) #
+## and religious preference.#
+## all models have only a random intercept (no random slopes)#
+## all models are 2-level, with time nested in people#
+## models differ only in their L1 error structure#
+# default model:#
+#
+mod.homo<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, na.action=na.exclude, data=data, control=list(opt="optim")) #
+#
+summary(mod.homo)
+data$year_c<-data$year-1#
+data$year_c2<-data$year_c^2
+mod.homo<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, na.action=na.exclude, data=data, control=list(opt="optim")) #
+#
+summary(mod.homo)
+mod.AR<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, correlation=corAR1(),na.action=na.exclude, data=data, control=list(opt="optim"))#
+#
+summary(mod.AR)
+mod.unst<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, #
+correlation=corSymm(),  # freely estimate covariances#
+weights=varIdent(form=~1|year_c), # variances for each year can be different#
+na.action=na.exclude, data=data, control=list(opt="optim"))#
+#
+summary(mod.unst)
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, #
+weights=varIdent(form=~1|year_c),  # freely estimate variances for each year#
+na.action=na.exclude, data=data, control=list(opt="optim"))#
+#
+summary(mod.hetero)
+anova(mod.homo,mod.AR)#
+#
+# default vs. heterogenous#
+anova(mod.homo,mod.hetero)
+sink()
+library(foreign) 	# reads data#
+library(ggplot2)	# plotting#
+library(psych)		# descriptives by group#
+library(nlme)		# run models; nlme offers a lot of flexibility with error structures that lme4 does not#
+#### GET DATA #####
+#
+# These analyses uses the "wgt.dta" data file, which has 4 timepoints #
+# (except for participant # 45, who has 5 for some reason).#
+#
+wgt<-read.dta("wgt.dta", convert.factors=T)#
+head(wgt)
+describeBy(wgt$age,wgt$occ)
+wgt<-wgt[wgt$occ<5,]
+describeBy(wgt$age,wgt$occ)
+wgt.t1<-subset(wgt, occ==1)#
+wgt$age_c<-wgt$age-(mean(wgt.t1$age))#
+#
+## Compute Polynomials:#
+#
+# Because we have a healthy range of ages, we could compute a lot of polynomial effects.#
+# To keep things simple, we'll just look at the quadratic effect.#
+#
+wgt$age_c2<-wgt$age_c^2
+wgt$age_c3<-wgt$age_c^3
+mod1<-nlme(weight~1, random=~1|id, na.action=na.exclude, data=wgt)
+mod1<-lme(weight~1, random=~1|id, na.action=na.exclude, data=wgt)
+summary(mod1)
+mod1<-lme(weight~1, random=~1|id, na.action=na.exclude, data=wgt)#
+summary(mod1)
+mod2<-lme(weight~age_c, random=~age_c|id, na.action=na.exclude, data=wgt)#
+summary(mod2)
+mod2<-lme(weight~age_c, random=~age_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod2)
+anova(mod1,mod2)
+mod3<-lme(weight~age_c+age_c2, random=~age_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod3)
+anova(mod2,mod3)
+mod4<-lme(weight~age_c+age_c2, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod4)
+anova(mod3,mod4)
+mod5<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod5)
+anova(mod4,mod5)
+mod6<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2+age_c3|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod6)
+anova(mod5,mod6)
+mod5.AR<- mod5<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corAR1()) # this says the covariances are governed by an autoregressive structure#
+summary(mod5.AR)
+wgt<-wgt[order(wgt$age_c),]
+mod5.AR<- mod5<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corAR1()) # this says the covariances are governed by an autoregressive structure#
+#
+summary(mod5.AR)
+mod5.unst<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corSymm(),  # specify unrestricted covariances#
+weights=varIdent(form=~1|age_c))
+mod5.unst<-lme(weight~age_c+age_c2+age_c3, random=~age_c+age_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+  # specify unrestricted covariances#
+weights=varIdent(form=~1|age_c)) # estimate a separate variance for each age
+wgt$occ_c<-wgt$occ-1
+wgt$occ_c2<-wgt$occ_c^2
+mod2<-lme(weight~occ_c, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod2)
+anova(mod1,mod2)
+mod3<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod3)
+anova(mod2,mod3)
+mod4<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod4)#
+#
+## Compare:#
+#
+anova(mod3,mod4)
+mod4.unst<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corSymm(),  # specify unrestricted covariances#
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each age
+summary(mod4.unst)
+summary(mod4.hetero)
+mod4.hetero<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each occassion
+mod4.unst<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corSymm(),  # specify unrestricted covariances#
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each occassion #
+#
+summary(mod4.unst)
+mod4.hetero<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+weights=varIdent(form=~1|occ_c))
+mod4.hetero<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each occassion #
+#
+summary(mod4.hetero)
+anova(mod3, mod3.hetero)
+mod3.hetero<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each occassion
+# AR1 vs. homogenous:#
+anova(mod4, mod4.AR)#
+#
+# heterogenous vs. homogenous:#
+anova(mod3, mod3.hetero)
+wgt<-wgt[order(wgt$occ_c),]#
+#
+mod4.AR<- mod5<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corAR1()) # this says the covariances are governed by an autoregressive structure#
+#
+summary(mod4.AR)
+# AR1 vs. homogenous:#
+anova(mod4, mod4.AR)#
+#
+# heterogenous vs. homogenous:#
+anova(mod3, mod3.hetero)
+mod4.AR<- mod5<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corAR1()) # this says the covariances are governed by an autoregressive structure#
+#
+summary(mod4.AR)
+data<-read.table("hw3a.txt",header=FALSE,#
+col.names=c("district","respondant","year","attitude","gender","age83","religpref"))
+data$year_c<-data$year - 1.#
+#
+# compute quadratic term.#
+#
+data$year_c2<-data$year_c^2
+modL32<-lme(attitude~year_c+year_c2, random=~ year_c+year_c2|district/respondant, na.action=na.exclude, data=data, control=list(opt="optim"))#
+summary(modL32)
+head(data)
+mod.3level.2<-lme(attitude~year_c + age, random=~ year_c |district/respondant, na.action=na.exclude, data=data)
+mod.3level.2<-lme(attitude~year_c + age83, random=~ year_c |district/respondant, na.action=na.exclude, data=data)
+summary(mod.3level.2)
+install.packages("Rmarkdown", dependencies=T)
+install.packages("rmarkdown", dependencies=T)
+library(rmarkdown)
+?rmarkdown
+render("HW3 Q3 for Ell.R")
+install.packages("knitr", dependencies=T)
+install.packages("pandoc", dependencies=T)
+render("HW3 Q3 for Ell.R")
+??pandoc
+pandoc_available()
+library(foreign) 	# reads data#
+library(ggplot2)	# plotting#
+library(psych)		# descriptives by group#
+library(nlme)
+wgt<-read.dta("wgt.dta", convert.factors=T)#
+head(wgt)
+describeBy(wgt$age,wgt$occ)#
+#
+# There are only 3 participants who have 5 timepoints. Let's get rid of them.#
+#
+wgt<-wgt[wgt$occ<5,] # keep all the rows of wgt in which the occ value is less than 5#
+#
+# Examine means again to make sure your subsetting worked:#
+#
+describeBy(wgt$age,wgt$occ)
+wgt$occ_c<-wgt$occ-1#
+#
+## Compute Polynomials:#
+#
+# Because we only have 4 timepoints, we'll just look at the quadratic effect.#
+#
+wgt$occ_c2<-wgt$occ_c^2
+mod1<-lme(weight~1, random=~1|id, na.action=na.exclude, data=wgt)#
+summary(mod1)
+mod2<-lme(weight~occ_c, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod2)#
+#
+## Compare:#
+anova(mod1,mod2)
+mod1<-lme(weight~1, random=~1|id, na.action=na.exclude, data=wgt, REML=F)#
+summary(mod1)#
+#
+## Unconditional Linear Growth:#
+#
+mod2<-lme(weight~occ_c, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), REML=F)#
+summary(mod2)#
+#
+## Compare:#
+anova(mod1,mod2)
+?lme
+mod1a<-update(mod1,method="ML")#
+mod2a<-update(mod2,method="ML")#
+anova(mod1a,mod2a)
+mod3<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod3)
+mod4<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"))#
+summary(mod4)
+anova(mod3,mod4)
+mod4.unst<-update(mod4,correlation=corSymm(), weights=varIdent(form=~1|occ_c))#
+#
+summary(mod4.unst)
+wgt<-wgt[order(wgt$occ_c),]#
+#
+mod4.AR<- mod5<-lme(weight~occ_c+occ_c2, random=~occ_c+occ_c2|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+correlation=corAR1()) # this says the covariances are governed by an autoregressive structure#
+#
+summary(mod4.AR)
+mod3.hetero<-lme(weight~occ_c+occ_c2, random=~occ_c|id, na.action=na.exclude, data=wgt, control=list(opt="optim"), #
+weights=varIdent(form=~1|occ_c)) # estimate a separate variance for each occassion #
+#
+summary(mod3.hetero)
+anova(mod4, mod4.AR)#
+anova(mod3, mod3.AR)#
+# heterogenous vs. homogenous:#
+anova(mod3, mod3.hetero)
+data<-read.table("hw3a.txt",header=FALSE,#
+col.names=c("district","respondant","year","attitude","gender","age83","religpref"))#
+# check number of timepoints#
+summary(data$year)
+data$year_c<-data$year - 1.
+mod.2level<-lme(attitude~year_c, random=~ year_c |respondant, na.action=na.exclude, data=data)#
+summary(mod.2level)
+mod.3level<-lme(attitude~year_c, random=~ year_c |district/respondant, na.action=na.exclude, data=data)#
+#
+# note that you now get two sets of random effects: one for district and one for respondent in district#
+# the fixed effects should be very close to what they were in the 2-level model#
+summary(mod.3level)
+mod4est<-fixef(mod4)
+mod4est
+tmp <- data.frame(x= min(wgt$occ_c) : max(wgt$occ_c) )
+tmp
+# mod4est[1] = intercept#
+# mod4est[2] = occ_c#
+# mod4est[3] = occ_c2#
+#
+linquad= function(x){#
+	modest[1] + modest[2]*(x)  + modest[3]*(x^2)#
+	}#
+## Dataset to define the x-axis [time= 0, 1, 2, 3]#
+tmp <- data.frame(x= min(wgt$occ_c) : max(wgt$occ_c) )#
+fit <- ggplot(data=tmp, aes(x))#
+#
+fit +  #
+	stat_function(fun=linquad) +#
+   	theme_bw() +#
+   	theme(panel.grid.major = element_blank(), #
+		  panel.grid.minor = element_blank()) +#
+    scale_x_continuous(breaks=c(0, 1, 2, 3), #
+    	  labels=c("1", "2", "3", "4"), "Measurement Occassion") +#
+	scale_y_continuous(limits = c(min(wgt$weight), max(wgt$weight)),#
+	                   "Weight") +#
+	theme(legend.position="none")
+linquad= function(x){#
+	mod4est[1] + mod4est[2]*(x)  + mod4est[3]*(x^2)#
+	}#
+## Dataset to define the x-axis [time= 0, 1, 2, 3]#
+tmp <- data.frame(x= min(wgt$occ_c) : max(wgt$occ_c) )#
+fit <- ggplot(data=tmp, aes(x))#
+#
+fit +  #
+	stat_function(fun=linquad) +#
+   	theme_bw() +#
+   	theme(panel.grid.major = element_blank(), #
+		  panel.grid.minor = element_blank()) +#
+    scale_x_continuous(breaks=c(0, 1, 2, 3), #
+    	  labels=c("1", "2", "3", "4"), "Measurement Occassion") +#
+	scale_y_continuous(limits = c(min(wgt$weight), max(wgt$weight)),#
+	                   "Weight") +#
+	theme(legend.position="none")
+library(nlme)#
+data<-read.table("hw3a.txt",header=FALSE,col.names=c("district","respondant","year","attitude","gender","age83","religpref"))#
+#
+head(data)#
+#
+data$year_c<-data$year-1#
+data$year_c2<-data$year_c^2
+debug(lme)
+mod.hetero<-lme(attitude~year_c+year_c2+religpref, random=~ 1|respondant, #
+weights=varIdent(form=~1|year_c),  # freely estimate variances for each year#
+na.action=na.exclude, data=data, control=list(opt="optim"))

@@ -1,0 +1,143 @@
+Linear mixed-effects model fit by REML
+ Data: data 
+       AIC      BIC    logLik
+  3823.742 3853.493 -1905.871
+
+Random effects:
+ Formula: ~1 | respondant
+        (Intercept) Residual
+StdDev:    1.380283 1.154268
+
+Fixed effects: attitude ~ year_c + year_c2 + religpref 
+                Value Std.Error  DF  t-value p-value
+(Intercept)  5.082493 0.1123892 790 45.22224  0.0000
+year_c      -0.582765 0.1111956 790 -5.24090  0.0000
+year_c2      0.228220 0.0355201 790  6.42508  0.0000
+religpref   -1.173780 0.3653034 262 -3.21317  0.0015
+ Correlation: 
+          (Intr) year_c yer_c2
+year_c    -0.424              
+year_c2    0.316 -0.958       
+religpref -0.222  0.000  0.000
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-3.44166118 -0.55150814 -0.01003921  0.49878787  2.95847381 
+
+Number of Observations: 1056
+Number of Groups: 264 
+Linear mixed-effects model fit by REML
+ Data: data 
+      AIC      BIC    logLik
+  3825.39 3860.099 -1905.695
+
+Random effects:
+ Formula: ~1 | respondant
+        (Intercept) Residual
+StdDev:    1.372144 1.163549
+
+Correlation Structure: AR(1)
+ Formula: ~1 | respondant 
+ Parameter estimate(s):
+       Phi 
+0.03084258 
+Fixed effects: attitude ~ year_c + year_c2 + religpref 
+                Value Std.Error  DF  t-value p-value
+(Intercept)  5.085626 0.1125049 790 45.20360  0.0000
+year_c      -0.584786 0.1113118 790 -5.25358  0.0000
+year_c2      0.228220 0.0355117 790  6.42661  0.0000
+religpref   -1.175282 0.3652121 262 -3.21808  0.0015
+ Correlation: 
+          (Intr) year_c yer_c2
+year_c    -0.422              
+year_c2    0.311 -0.957       
+religpref -0.221  0.000  0.000
+
+Standardized Within-Group Residuals:
+         Min           Q1          Med           Q3          Max 
+-3.441726397 -0.548807017  0.001431338  0.512933522  2.946330817 
+
+Number of Observations: 1056
+Number of Groups: 264 
+Linear mixed-effects model fit by REML
+ Data: data 
+       AIC      BIC    logLik
+  3828.545 3902.922 -1899.273
+
+Random effects:
+ Formula: ~1 | respondant
+        (Intercept) Residual
+StdDev:    1.336698 1.071275
+
+Correlation Structure: General
+ Formula: ~1 | respondant 
+ Parameter estimate(s):
+ Correlation: 
+  1      2      3     
+2  0.039              
+3 -0.010  0.055       
+4  0.120  0.059  0.222
+Variance function:
+ Structure: Different standard deviations per stratum
+ Formula: ~1 | year_c 
+ Parameter estimates:
+       0        1        2        3 
+1.000000 1.144623 1.241321 1.099150 
+Fixed effects: attitude ~ year_c + year_c2 + religpref 
+                Value Std.Error  DF  t-value p-value
+(Intercept)  5.112974 0.1079084 790 47.38252   0.000
+year_c      -0.608780 0.1123070 790 -5.42068   0.000
+year_c2      0.228776 0.0355878 790  6.42851   0.000
+religpref   -1.206079 0.3638631 262 -3.31465   0.001
+ Correlation: 
+          (Intr) year_c yer_c2
+year_c    -0.396              
+year_c2    0.311 -0.963       
+religpref -0.230  0.000  0.000
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-3.23356241 -0.54774355  0.04335927  0.54126782  2.72288586 
+
+Number of Observations: 1056
+Number of Groups: 264 
+Linear mixed-effects model fit by REML
+ Data: data 
+       AIC      BIC    logLik
+  3822.426 3867.052 -1902.213
+
+Random effects:
+ Formula: ~1 | respondant
+        (Intercept) Residual
+StdDev:    1.381769 1.069775
+
+Variance function:
+ Structure: Different standard deviations per stratum
+ Formula: ~1 | year_c 
+ Parameter estimates:
+       0        1        2        3 
+1.000000 1.136930 1.179198 0.985297 
+Fixed effects: attitude ~ year_c + year_c2 + religpref 
+                Value Std.Error  DF  t-value p-value
+(Intercept)  5.098946 0.1096372 790 46.50744  0.0000
+year_c      -0.603502 0.1110213 790 -5.43591  0.0000
+year_c2      0.231547 0.0354989 790  6.52266  0.0000
+religpref   -1.189293 0.3649670 262 -3.25863  0.0013
+ Correlation: 
+          (Intr) year_c yer_c2
+year_c    -0.380              
+year_c2    0.281 -0.964       
+religpref -0.227  0.000  0.000
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-3.34833105 -0.54550485  0.01338855  0.49159236  2.84421434 
+
+Number of Observations: 1056
+Number of Groups: 264 
+         Model df      AIC      BIC    logLik   Test   L.Ratio p-value
+mod.homo     1  6 3823.742 3853.493 -1905.871                         
+mod.AR       2  7 3825.390 3860.099 -1905.695 1 vs 2 0.3522741  0.5528
+           Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+mod.homo       1  6 3823.742 3853.493 -1905.871                        
+mod.hetero     2  9 3822.426 3867.052 -1902.213 1 vs 2 7.316427  0.0625

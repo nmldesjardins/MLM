@@ -1,0 +1,78 @@
+library(foreign) 	# reads data#
+library(reshape2) 	# restructures data#
+library(psych)		# handy for descriptives#
+library(ggplot2)	# plotting#
+library(lme4)		# run models#
+library(lmerTest)	# get significance tests
+d1<-read.dta("med_alda.dta")
+str(d1)
+head(d1)
+d1<-read.dta("med.dta")
+head(d1)
+d1<-read.dta("nys.dta")
+head(d1)
+d1<-read.dta("reading_pp.dta")
+head(d1)
+d1<-read.dta("reading.dta")
+head(d1)
+d1<-read.dta("unemploy.dta")
+head(d1)
+d1<-read.dta("wgt.dta")
+heaD(d1)
+head(d1)
+wgt<-read.dta("wgt.dta", convert.factors=T)#
+head(wgt)
+str(wgt)
+# recode gender (1: male, 2: female) to (0: male, 1: female)#
+wgt$female <- wgt$gender -1
+p <- ggplot(data = wgt, aes(x = age, y = weight, group = id))#
+p + geom_point() + facet_grid(. ~ female)#
+#
+p + geom_line() + facet_grid(. ~ female)
+52/6
+52-6
+46/52
+summary(wgt$age)
+length(wgt$occ)
+wgt$occ_c<-wgt$occ-1
+head(wgt)
+occ
+egt$occ
+wgt$occ
+m1<-lmer(weight~occ_c + (occ_c|id))
+m1<-lmer(weight~occ_c + (occ_c|id), data=wgt)
+m2<-lmer(weight~age + (age|id), data=wgt)
+summary(m1)
+summary(m2)
+wgt$age2<-wgt$age*52
+head(wgt)
+wgt$age2<-wgt$age*12
+head(wgt)
+wgt$age2
+maget1<-subset(wgt, occ==1)
+head(maget1)
+mean(maget1$age)
+wgt.t1<-subset(wgt, occ==1)#
+#
+wgt$age_c<-wgt$age-(mean(wgt.t1$age))
+head(wgt)
+m1<-lmer(weight~occ_c + (occ_c|id), data=wgt)#
+m2<-lmer(weight~age_c + (age_c|id), data=wgt)
+summary(m1,m2)
+summary(m1)
+summary(m2)
+m3<-lmer(weight~age + (age|id), data=wgt)
+summary(m3)
+wgt$age2<-(wgt$age)^2
+mod4<-lmer(weight~ age + age2 + (age + age2 | id))
+mod4<-lmer(weight~ age + age2 + (age + age2 | id), data=wgt)
+mod5<-lmer(weight~ age + age2 + (age | id), data=wgt)
+summary(mod5)
+head(wgt)
+mod5<-lmer(weight~ age + I(age2) + (age | id), data=wgt)#
+summary(mod5)
+mod5<-lmer(weight~ age + (age^2) + (age | id), data=wgt)#
+summary(mod5)
+?I
+mod6<-lmer(weight~age*female + age2*female + (age|id), data=wgt)
+summary(mod6)

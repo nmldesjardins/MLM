@@ -1,0 +1,687 @@
+shrink1
+model1a<-lme(mathscore~timeonmath+schooltype, random=~timeonmath+schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+summary(model1a)
+## get EB betas:#
+coef(model1a)#
+#
+## get residuals:#
+#
+# first save estimates as variables#
+xa<-summary(model1a)#
+int1a<-xa$coefficients$fixed[1]#
+time1a<-xa$coefficients$fixed[2]#
+type1a<-xa$coefficients$fixed[3]
+shrink1a<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1a)), (int1a-coef(model1a)[,1]),  (time1a-coef(model1a)[,2]), (type1a-coef(model1a)[,3])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type")
+shrink1a<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1a)), (int1a-coef(model1a)[,1]),  (time1a-coef(model1a)[,2]), (type1a-coef(model1a)[,3])))#
+colnames(shrink1a)<-c("n","EB int","EB time", "EB type", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type")
+shrink1a
+61-3
+int1a
+model1a<-lme(mathscore~timeonmath+schooltype, random=~timeonmath+schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+model1<-lme(mathscore~timeonmath*schooltype, random=~timeonmath*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model1)
+summary(model1)
+coef(model1)
+x<-coef(model1)[1,1]
+x
+(coef(model1)[1,1])+(coef(model1)[1,3])
+43+7
+(coef(model1)[1,2])+(coef(model1)[1,3])
+(coef(model1)[1,2])+(coef(model1)[1,4])
+model1a<-lme(mathscore~timeonmath+schooltype, random=~timeonmath+schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(moel1a)
+coef(model1a)
+(coef(model1a)[1,1])+(coef(model1a)[1,3])
+43.2443+7.069
+summary(model1a)
+(4.895130+coef(model1a)[1,2]))
+(4.895130+coef(model1a)[1,2])
+model1<-lme(mathscore~timeonmath*schooltype, random=~timeonmath*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model1)
+## fit model:#
+model1<-lme(mathscore~timeonmath*schooltype, random=~timeonmath*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB betas:#
+coef(model1)
+x<-summary(model1)#
+int1<-x$coefficients$fixed[1]#
+time1<-x$coefficients$fixed[2]#
+type1<-x$coefficients$fixed[3]#
+timeXtype1<-x$coefficients$fixed[4]
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)), (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink1
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink1
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, time1,type1,timeXtype1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shirnk1
+shrink1
+shrink1$m<-shrink1$Shrinkage_Int+shrink1$Shrinkage_type
+shrink1$ms<-shrink1$Shrinkage_time+shrink1$Shrinkage_timeXtype
+shrink1
+shrink1$b00 <- shrink1[,2] + shrink1[,4]#
+shrink1$b10 <- shrink1$"EB time"+shrink1$"EB timeXtype"
+shrink1
+shrink1$b00_s<-shrink1$"Fixed Int"-b00#
+shrink1$b10_s<-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - b10
+shrink1$b00_s<-shrink1$"Fixed Int"-shrink1$b00#
+shrink1$b10_s<-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - shrink1$b10
+shrink1
+## fit model:#
+model2<-lme(mathscore~timeonmath*schooltype, random=~timeonmath|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB betas:#
+coef(model2)#
+#
+## get residuals:#
+#
+# first save estimates as variables#
+x2<-summary(model2)#
+int2<-x2$coefficients$fixed[1]#
+time2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+timeXtype2<-x2$coefficients$fixed[4]#
+#
+# then get differences between model estimates and EB estiamtes for each group; save as dataframe that includes group ns:#
+#
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)), int1, time1,type1,timeXtype1,(int2-coef(model2)[,1]),  (time2-coef(model2)[,2]), (type2-coef(model2)[,3]), (timeXtype2-coef(model2)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+shrink2$b00 <- shrink2[,2] + shrink2[,4]#
+shrink2$b10 <- shrink2$"EB time"+shrink2$"EB timeXtype"#
+shrink2$b00_sh <-shrink2$"Fixed Int"-shrink2$b00#
+shrink2$b10_sh <-(shrink2$"Fixed time"+shrink2$"Fixed timeXtype") - shrink2$b10
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)), int2, time2,type2,timeXtype2,(int2-coef(model2)[,1]),  (time2-coef(model2)[,2]), (type2-coef(model2)[,3]), (timeXtype2-coef(model2)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+shrink2$b00 <- shrink2[,2] + shrink2[,4]#
+shrink2$b10 <- shrink2$"EB time"+shrink2$"EB timeXtype"#
+shrink2$b00_sh <-shrink2$"Fixed Int"-shrink2$b00#
+shrink2$b10_sh <-(shrink2$"Fixed time"+shrink2$"Fixed timeXtype") - shrink2$b10
+head(shrink2)
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)), int2, time2,type2,timeXtype2,(int2-coef(model2)[,1]),  (time2-coef(model2)[,2]), (type2-coef(model2)[,3]), (timeXtype2-coef(model2)[,4])))#
+colnames(shrink2)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+shrink2$b00 <- shrink2[,2] + shrink2[,4]#
+shrink2$b10 <- shrink2$"EB time"+shrink2$"EB timeXtype"#
+shrink2$b00_sh <-shrink2$"Fixed Int"-shrink2$b00#
+shrink2$b10_sh <-(shrink2$"Fixed time"+shrink2$"Fixed timeXtype") - shrink2$b10
+shrink2
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+# get the EB estimates for the gs:#
+coef(model)#
+# to get a better idea of shrinkage, let's compute the differences between the model estimate and the group bs:#
+#
+# to do this, we'll save the summary of the model as an object:#
+x<-summary(model)#
+#
+# then get the fixed estimate of the intercept:#
+int<-x$coefficients$fixed[1]#
+# in lme4, this is:#
+# int<-x$coefficients[1,1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]#
+# in lme4:#
+# slope<-x$coefficients[2,1]#
+# get the differences between the fixed estimates and the EB estimates for each school:#
+#
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")#
+#
+shrink
+## for more fun, compare the EB estimates to the OLS estimates:#
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model<-lm(timeonmath~ses,data=nels)#
+	coef(model)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)
+shrink
+model1<-lme(timeonmath~ses*schooltype, random=~ses*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB estimates:#
+coef(model1)#
+#
+## get residuals:#
+#
+# first save estimates as variables#
+x<-summary(model1)#
+int1<-x$coefficients$fixed[1]#
+time1<-x$coefficients$fixed[2]#
+type1<-x$coefficients$fixed[3]#
+timeXtype1<-x$coefficients$fixed[4]#
+#
+# then get differences between model estimates and EB estiamtes for each group; save as dataframe that includes group ns [note that, in order to get the same values as HLM produces, you need to compute ]:#
+#
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, time1,type1,timeXtype1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+# get EB betas, and difference between EB betas and fixed effects.#
+shrink1$b00 <- shrink1[,2] + shrink1[,4]#
+shrink1$b10 <- shrink1$"EB time"+shrink1$"EB timeXtype"#
+shrink1$b00_sh <-shrink1$"Fixed Int"-shrink1$b00#
+shrink1$b10_sh <-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - shrink1$b10
+shrink1
+library(foreign) # reads SPSS files#
+library(plyr)    # required for the ddply function#
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+summary(nels$timeonmath)
+nels$timeonmath_c<-(nels$timeonmath-(mean(nels$timeonmath)))#
+#
+summary(nels$timeonmath_c)
+groupmeans<-ddply(nels,.(Schoolid),function(nels){#
+	mean<-mean(nels$timeonmath)#
+	})#
+# merge the group means into the dataset and rename them	#
+nels<-merge(nels,groupmeans)#
+head(nels)#
+names(nels)[names(nels)=="V1"]<-c("time_grpmean")
+nels$time_grpc<-(nels$timeonmath - nels$time_grpmean)
+head(nels)
+# check it#
+summary(nels$time_grpc)#
+#
+# even better, check the means by group#
+by(nels$time_grpc,as.factor(nels$Schoolid),summary)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+library(nlme)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model)
+x<-summary(model)
+names(x$coefficients)
+int<-x$coefficients$fixed[1]
+slope<-x$coefficients$fixed[2]
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")#
+#
+shrink
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+mean(shrink$"EB intercept")#
+ int#
+ mean(shrink$"EB slope")#
+ slope
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model<-lm(timeonmath~ses,data=nels)#
+	coef(model)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)
+shrink
+library(foreign) # reads SPSS files#
+library(lattice) # plots#
+library(nlme) # runs models#
+library(plyr) # is awesome (runs a function on subsets of the data)
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+xyplot(timeonmath~ses|as.factor(Schoolid), data=nels,type=c("p","r","g"),col="forest green", col.line="black",xlab="SES", ylab="Time on Math")
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+summary(model)
+coef(model)
+x<-summary(model)
+int<-x$coefficients$fixed[1]
+int
+names(summary(model))
+names(x$coefficients)
+x$coefficients$fixed
+slope<-x$coefficients$fixed[2]
+slope
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))
+shrink
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")
+shrink
+n<-summary(as.factor(nels$Schoolid))
+n
+shrink<-cbind(shrink,n)
+shrink
+mean(shrink$"EB intercept")
+int
+mean(shrink$"EB slope")#
+ slope
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~ses,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")
+shrink<-cbind(shrink,slopesints)#
+#
+shrink
+model2<-lme(timeonmath~ses*schooltype, random=~ses*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+coef(model2)
+summary(model2)
+coef(model2)
+x2<-summary(model2)#
+#
+int2<-x2$coefficients$fixed[1]#
+ses2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+sesXtype2<-x2$coefficients$fixed[4]
+int2
+x2
+int2
+ses2
+type2
+eb<-coef(model2)
+eb
+b00<-(eb[,1])+(eb[,3])
+b00
+b10<-(eb[,2])+(eb[,4])
+shrink2<-cbind(eb,b00,b10)
+shrink2
+mean(shrink2$b00)
+int2
+mean(shrink2$"(Intercept)")
+shrink2<-as.data.frame(cbind(eb,b00,b10))
+shrink2
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)),int2, ses2,type2,sesXtype2, (int2-coef(model2)[,1]),  (ses2-coef(model2)[,2]), (type2-coef(model2)[,3]), (sesXtype2-coef(model2)[,4])))#
+colnames(shrink2)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink2
+shrink2$b00<-(eb[,1])+(eb[,3])#
+shrink2$b10<-(eb[,2])+(eb[,4])#
+shrink2$b00_shrunk<-int-shrink2$b00#
+shrink2$b10_shrunk<-(ses2+sesXtype2)-shrink2$b10
+shrink2
+shrink2$b00_shrunk2<-(int+type2)-shrink2$b00
+shrink2
+mean(shrink2$b00)
+mean(shrink2$b10)
+model1<-lme(timeonmath~ses*schooltype, random=~ses*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB estimates:#
+coef(model1)#
+#
+## get residuals:#
+#
+# first save estimates as variables#
+x<-summary(model1)#
+int1<-x$coefficients$fixed[1]#
+time1<-x$coefficients$fixed[2]#
+type1<-x$coefficients$fixed[3]#
+timeXtype1<-x$coefficients$fixed[4]#
+#
+# then get differences between model estimates and EB estiamtes for each group; save as dataframe that includes group ns [note that, in order to get the same values as HLM produces, you need to compute ]:#
+#
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, time1,type1,timeXtype1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+# get EB betas, and difference between EB betas and fixed effects.#
+shrink1$b00 <- shrink1[,2] + shrink1[,4]#
+shrink1$b10 <- shrink1$"EB time"+shrink1$"EB timeXtype"#
+shrink1$b00_sh <-shrink1$"Fixed Int"-shrink1$b00#
+shrink1$b10_sh <-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - shrink1$b10
+shrink1
+model1<-lme(timeonmath~mathscore*schooltype, random=~mathscore*schooltype|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB estimates:#
+coef(model1)#
+#
+## get residuals:#
+#
+# first save estimates as variables#
+x<-summary(model1)#
+int1<-x$coefficients$fixed[1]#
+time1<-x$coefficients$fixed[2]#
+type1<-x$coefficients$fixed[3]#
+timeXtype1<-x$coefficients$fixed[4]#
+#
+# then get differences between model estimates and EB estiamtes for each group; save as dataframe that includes group ns [note that, in order to get the same values as HLM produces, you need to compute ]:#
+#
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, time1,type1,timeXtype1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")#
+#
+# get EB betas, and difference between EB betas and fixed effects.#
+shrink1$b00 <- shrink1[,2] + shrink1[,4]#
+shrink1$b10 <- shrink1$"EB time"+shrink1$"EB timeXtype"#
+shrink1$b00_sh <-shrink1$"Fixed Int"-shrink1$b00#
+shrink1$b10_sh <-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - shrink1$b10
+shrink1
+library(foreign) # reads SPSS files#
+library(lattice) # plots#
+library(nlme) # runs models#
+library(plyr) # is awesome (runs a function on subsets of the data)#
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+model2<-lme(timeonmath~ses*schooltype, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+eb<-coef(model2)
+eb
+b00<-(eb[,1])+(eb[,3])
+b10<-(eb[,2])+(eb[,4])
+shrink2<-as.data.frame(cbind(eb,b00,b10))
+shrink2
+x2<-summary(model2)#
+#
+int2<-x2$coefficients$fixed[1]#
+ses2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+sesXtype2<-x2$coefficients$fixed[4]
+type2
+shrink2$b00_shrunk<-(int2+type2)-b00
+shrink2$b01_shrunk<-(ses2+sesXtype2)-b01
+shrink2$b01_shrunk<-(ses2+sesXtype2)-shrink2$b10
+shrink2
+mean(shrink2$b00)
+int
+int2
+summary(model2)
+x<-summary(model2)
+names(x)
+x$coefficients$fixed
+model1<-lme(mathscore~timeonmath*schooltype, random=~timeonmath|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+summary(model1)
+coef(model1)
+x<-summary(model1)#
+int1<-x$coefficients$fixed[1]#
+time1<-x$coefficients$fixed[2]#
+type1<-x$coefficients$fixed[3]#
+timeXtype1<-x$coefficients$fixed[4]
+shrink1<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model1)),int1, time1,type1,timeXtype1, (int1-coef(model1)[,1]),  (time1-coef(model1)[,2]), (type1-coef(model1)[,3]), (timeXtype1-coef(model1)[,4])))#
+colnames(shrink1)<-c("n","EB int","EB time", "EB type", "EB timeXtype", "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink1$b00 <- shrink1[,2] + shrink1[,4]#
+shrink1$b10 <- shrink1$"EB time"+shrink1$"EB timeXtype"#
+shrink1$b00_sh <-shrink1$"Fixed Int"-shrink1$b00#
+shrink1$b10_sh <-(shrink1$"Fixed time"+shrink1$"Fixed timeXtype") - shrink1$b10
+shrink1$b00_sh2 <-(shrink1$"Fixed Int"+shrink1$"Fixed type"-shrink1$b00
+)
+shrink1$b00_sh2 <-(shrink1$"Fixed Int"+shrink1$"Fixed type")-shrink1$b00
+shrink1
+eb<-coef(model2)#
+#
+# compute EB betas:#
+#
+# add the 1st column of eb ("Intercept") to the 3rd column ("Type") to get b00:#
+b00<-(eb[,1])+(eb[,3])#
+# add the 2nd column of eb ("ses") to the 4th column ("sesXtype") to get b10:#
+b10<-(eb[,2])+(eb[,4])#
+#
+# put gs and betas together in a dataframe#
+shrink2<-as.data.frame(cbind(eb,b00,b10))#
+#
+# get fixed effects#
+x2<-summary(model2)#
+#
+# save each fixed effect as an object for easy retrieval:#
+int2<-x2$coefficients$fixed[1]#
+ses2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+sesXtype2<-x2$coefficients$fixed[4]
+shrink2<-as.data.frame(cbind(shrink2,(summary(as.factor(nels$Schoolid))),eb,int2, ses2,type2,sesXtype2, (int2-coef(model2)[,1]),  (ses2-coef(model2)[,2]), (type2-coef(model2)[,3]), (sesXtype2-coef(model2)[,4])))#
+colnames(shrink2)<-c("n","EB int","EB time", "EB type", "EB timeXtype","b00","b10" "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+shrink2
+shrink2<-as.data.frame(cbind(shrink2,(summary(as.factor(nels$Schoolid))),(coef(model2)),eb$b00, eb$b10, int2, ses2,type2,sesXtype2, (int2-coef(model2)[,1]),  (ses2-coef(model2)[,2]), (type2-coef(model2)[,3]), (sesXtype2-coef(model2)[,4])))#
+colnames(shrink2)<-c("n","EB int","EB time", "EB type", "EB timeXtype","b00","b10" "Fixed Int", "Fixed time", "Fixed type","Fixed timeXtype", "Shrinkage_Int", "Shrinkage_time", "Shrinkage_type", "Shrinkage_timeXtype")
+eb<-coef(model2)
+eb
+eb_g00 <- eb[,1]#
+eb_g01_type <-eb[,3]#
+eb_g10_ses <-eb[,2]#
+eb_g11_sesXtype<-eb[,4]
+eb_g00
+x2<-summary(model2)#
+#
+# save each fixed effect as an object for easy retrieval:#
+int2<-x2$coefficients$fixed[1]#
+ses2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+sesXtype2<-x2$coefficients$fixed[4]
+y<-as.data.frame(cbind(b00<-(eb_g00+eb_g01_type),(b01<-(eb_g10_ses+eb_g11_sesXtype))))
+y
+shrink2<-as.data.frame(cbind(summary(as.factor(nels$Schoolid))),(eb),(eb_g00+eb_g01_type), (eb_g10_ses+eb_g11_sesXtype),(int2-eb_g00), (ses2-eb_g10_ses),(type2-eb_g01_type),(sesXtype2-eb_g11_sesXtype), ((int2+type2)-(eb_g00+eb_g01_type)), ((ses2+sesXtype2)-(eb_g10_ses+eb_g11_sesXtype2)))#
+#
+colnames(shrink2)<-c("n","EB g00","EB g10time", "EB g01type", "EB g11timeXtype","b00","b10", "Shrinkage g00", "Shrinkage g10 time", "Shrinkage g01 type", "Shrinkage g11 timeXtype", "Shrinkage b00", "Shrinkage b10")
+shrink2
+# run the model:#
+model2<-lme(timeonmath~ses*schooltype, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+# get EB estimates for gs; save as an object called "eb"#
+eb<-coef(model2)#
+#
+# to make it easier to keep track of things, let's give each EB estimate a name:#
+eb_g00 <- eb[,1]   		# g00 = the first whole column of eb ("Intercept")#
+eb_g01_type <-eb[,3]	# g01 = the third whole column of eb ("type")#
+eb_g10_ses <-eb[,2]		# g00 = the second whole column of eb ("ses")#
+eb_g11_sesXtype<-eb[,4] # g00 = the fourth whole column of eb ("sesXtype")#
+#
+# get fixed effects#
+x2<-summary(model2)#
+#
+# save each fixed effect as an object for easy retrieval:#
+int2<-x2$coefficients$fixed[1]#
+ses2<-x2$coefficients$fixed[2]#
+type2<-x2$coefficients$fixed[3]#
+sesXtype2<-x2$coefficients$fixed[4]#
+#
+# compute shrinkage estimates for each parameter + betas and combine#
+# this puts together, in a single dataframe:#
+	# n for each group: (summary(as.factor(nels$Schoolid)))#
+	# the EB estimates for each parameter: (eb)#
+	# the EB estimates for the betas: (eb_g00+eb_g01_type), (eb_g10_ses+eb_g11_sesXtype)#
+		# remember: because we have an L2 predictor, b00 = g00 + g01Type and b10 = g10 + g10Type#
+	# the shrinkage estiamtes for each parameter: (int2-eb_g00), (ses2-eb_g10_ses),(type2-eb_g01_type),(sesXtype2-eb_g11_sesXtype)#
+		# these are just the differences between the fixed parameter (which we saved as variables, above) and the corresponding EB estimate for that parameter	(which we also saved)#
+	# the shrinkage estimates for the betas (this is what you're actually interested in):((int2+type2)-(eb_g00+eb_g01_type)), ((ses2+sesXtype2)-(eb_g10_ses+eb_g11_sesXtype2))#
+		# again, because the betas are composed of g00+g01 and g10+g11, we need to add the corresponding fixed effects together to get the fixed estimate of the betas rather than the fixed estimates of the gs. #
+shrink2<-as.data.frame(cbind(summary(as.factor(nels$Schoolid))),(coef(model2)),(eb_g00+eb_g01_type), (eb_g10_ses+eb_g11_sesXtype),(int2-eb_g00), (ses2-eb_g10_ses),(type2-eb_g01_type),(sesXtype2-eb_g11_sesXtype), ((int2+type2)-(eb_g00+eb_g01_type)), ((ses2+sesXtype2)-(eb_g10_ses+eb_g11_sesXtype2)))
+shrink2
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)),(eb_g00+eb_g01_type), (eb_g10_ses+eb_g11_sesXtype),(int2-eb_g00), (ses2-eb_g10_ses),(type2-eb_g01_type),(sesXtype2-eb_g11_sesXtype), ((int2+type2)-(eb_g00+eb_g01_type)), ((ses2+sesXtype2)-(eb_g10_ses+eb_g11_sesXtype2))))
+shrink2<-as.data.frame(cbind((summary(as.factor(nels$Schoolid))),(coef(model2)),(eb_g00+eb_g01_type), (eb_g10_ses+eb_g11_sesXtype),(int2-eb_g00), (ses2-eb_g10_ses),(type2-eb_g01_type),(sesXtype2-eb_g11_sesXtype), ((int2+type2)-(eb_g00+eb_g01_type)), ((ses2+sesXtype2)-(eb_g10_ses+eb_g11_sesXtype))))
+colnames(shrink2)<-c("n","EB g00","EB g10time", "EB g01type", "EB g11timeXtype","b00","b10", "Shrinkage g00", "Shrinkage g10 time", "Shrinkage g01 type", "Shrinkage g11 timeXtype", "Shrinkage b00", "Shrinkage b10")
+shrink2
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+library(foreign) # reads SPSS files#
+library(plyr)    # required for the ddply function
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+nels$timeonmath_c<-(nels$timeonmath-(mean(nels$timeonmath)))#
+#
+summary(nels$timeonmath_c)
+nels$time_grpmean2<-ave(timeonmath,list(Schoolid))
+nels$time_grpmean2<-ave(nels$timeonmath,list(nels$Schoolid))
+by(nels$time_grpc2,as.factor(nels$Schoolid),summary)
+by(nels$time_grpmean2,as.factor(nels$Schoolid),summary)
+?ave
+?lmer
+library(lmer)
+library(lme)
+library(lme4)
+?lmer
+library(foreign) # reads SPSS files#
+library(lattice) # plots#
+library(nlme) # runs models#
+library(plyr) # is awesome (runs a function on subsets of the data)#
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model)#
+# To get a better idea of how much shrinkage there is for each group, let's compute the differences between the fixed model estimate and the group bs:#
+#
+# to do this, we'll save the summary of the model as an object:#
+x<-summary(model)
+int<-x$coefficients$fixed[1]#
+# in lme4, this is:#
+# int<-x$coefficients[1,1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]#
+# in lme4:#
+# slope<-x$coefficients[2,1]#
+# get the differences between the fixed estimates and the EB estimates for each school:#
+#
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")#
+#
+shrink
+# for fun, let's add in the number of participants in each school:#
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~ses,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)#
+#
+shrink
+summary(model)
+lam1<-.561865^2/(.561865^2 + (1.3162988^2/23 ))
+lam1
+eb1<-(lam1* 1.1900664)+((1-lam1)* 1.8283798)
+eb1
+ave(nels$timeonmath,list(nels$Schoolid))
+eb1<-(lam1* 1.3913043)+((1-lam1)* 1.8283798)
+eb1
+model<-lme(timeonmath~1, random=~1|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+coef(model)#
+# To get a better idea of how much shrinkage there is for each group, let's compute the differences between the fixed model estimate and the group bs:#
+#
+# to do this, we'll save the summary of the model as an object:#
+x<-summary(model)
+int<-x$coefficients$fixed[1]
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1])))#
+colnames(shrink)<-c("EB intercept", "Shrinkage_Int")#
+#
+shrink
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~1,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept")#
+#
+shrink<-cbind(shrink,slopesints)#
+#
+shrink
+summary(model)
+lam1<-.6779546 ^2/(.6779546 ^2 + (1.323817 ^2/23 ))
+eb1<-(lam1* 1.3913043)+((1-lam1)* 1.772208)#
+> eb1
+eb1<-(lam1* 1.3913043)+((1-lam1)* 1.772208)#
+eb1
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+# get the EB estimates for the gs:#
+coef(model)#
+# To get a better idea of how much shrinkage there is for each group, let's compute the differences between the fixed model estimate and the group bs:#
+#
+# to do this, we'll save the summary of the model as an object:#
+x<-summary(model)
+shrink<-coef(model)#
+colnames(shrink)<-c("EB intercept", "EB slope")#
+shrink#
+#
+# for fun, let's add in the number of participants in each school:#
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+shirnk
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~ses,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")
+shrink<-cbind(shrink,slopesints)#
+#
+shrink
+shrink$int_diff<-shrink$"EB intercept "- shrink$"OLS intercept"#
+shrink$slope_diff<-shrink$"EB slope "- shrink$"OLS slope"
+shrink$int_diff<-shrink$"EB intercept"- shrink$"OLS intercept"#
+shrink$slope_diff<-shrink$"EB slope"- shrink$"OLS slope"
+shrink
+shrink[order(n),]
+model<-lme(timeonmath~1, random=~1|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))
+shrink<-coef(model)#
+colnames(shrink)<-c("EB intercept")#
+shrink#
+#
+# for fun, let's add in the number of participants in each school:#
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~1,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)#
+#
+shrink#
+### UPDATE 10.30.14: Now, get the difference between the OLS and EB estimates:#
+#
+shrink$int_diff<-shrink$"EB intercept"- shrink$"OLS intercept"
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~1,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept")#
+#
+shrink<-cbind(shrink,slopesints)#
+#
+shrink#
+### UPDATE 10.30.14: Now, get the difference between the OLS and EB estimates:#
+#
+shrink$int_diff<-shrink$"EB intercept"- shrink$"OLS intercept"
+shrink
+shrink[order(n),]
+model<-lme(timeonmath~1, random=~1|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+# Save the EB estimates#
+#
+shrink<-coef(model)#
+colnames(shrink)<-c("EB intercept")#
+# Get the OLS estimates#
+#
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~1,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept")#
+# Save the EB estimates and the OLS estimates together#
+shrink<-cbind(shrink,slopesints)#
+# Compute the difference between the EB estimate (the weighted estimate that accounts for the u00, eij, and group size)#
+# and the OLS estimate (unweighted)#
+#
+shrink$ind_diff<-shrink$"EB intercept"-shrink$"OLS intercept"#
+# Get the group ns and add them to the dataframe#
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)#
+#
+# Look at the estimates!#
+#
+shrink#
+#
+# You can also sort the rows by n:#
+#
+shrink[order(n),]
+b00<-summary(model)$coefficients$fixed[1]
+b00
+summary(model)$coefficients
+summary(model)
+b00<-summary(model)$coefficients$fixed[1]  # the fixed intercept#
+mean_25456<-0.8636364  # this is obtained from the OLS regression#
+t00<-0.6779546^2  # variance of the intercept (remember, nlme reports SDs not variances)#
+s2<-1.323817^2 # error variance#
+n_25456<-22#
+lambda_25456<-t00/(t00+(s2/n_25456))
+g00<-summary(model)$coefficients$fixed[1]
+eb_25456<-lambda_25456*mean_25456+(1-lambda_25456)*g00
+eb_25456

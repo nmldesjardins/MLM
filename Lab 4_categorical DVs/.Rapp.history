@@ -1,0 +1,799 @@
+?RR
+library(TripleR)
+?RR
+update
+sample=50
+print(sample)
+print("My sample size is", sample)
+print(paste("My sample size is", sample))
+x=seq(1:50,3)
+x=seq(1:50,by=3)
+x=seq(1,50,3)
+x
+sd(x)
+?sd
+x2=sd(x)
+round(x2,digits=2)
+sd(x,digits=2)
+round(sd(x),digit=2)
+sdx<-round(sd(x),digit=2)
+print(paste("My sample size is", sample_size, "and the SD is", sdx)
+)
+print(paste("My sample size is", sample, "and the SD is", sdx))
+iter <- 10000#
+sample_size <- 50#
+sample_means <- rep(0, iter)#
+sample_sizes <- seq(5, 100, 5)
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[i,j] <- sample_mean#
+  }}
+for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[i] <- sample_mean#
+  }
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]}
+sample_size
+sample_sizes <- seq(5, 100, 5)
+sample_sizes
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]}
+sample_size
+iter <- 10000#
+sample_size <- 50#
+sample_means <- rep(0, iter)#
+sample_sizes <- seq(5, 100, 5)#
+#
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[i] <- sample_mean#
+  }}#
+#
+hist(sample_means)
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[j] <- sample_mean#
+  }}#
+#
+hist(sample_means)
+iter <- 10000#
+sample_size <- 50#
+sample_means <- rep(0, iter)#
+sample_sizes <- seq(5, 100, 5)#
+#
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[j,i] <- sample_mean#
+  }}
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_sizes)#
+    sample_mean <- mean(sample)#
+    sample_means[i.j] <- sample_mean#
+  }}
+iter <- 10000#
+sample_size <- 50#
+sample_means <- rep(0, iter)#
+sample_sizes <- seq(5, 100, 5)#
+#
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_sizes)#
+    sample_mean <- mean(sample)#
+    sample_means[i,j] <- sample_mean#
+  }}
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[i] <- sample_mean#
+  }}
+sample_means
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[j] <- sample_mean#
+  }}
+sample_means
+for(j in 1:length(sample_sizes)){#
+  sample_size <- sample_sizes[j]#
+  for (i in 1:iter) {#
+    sample <- runif(sample_size)#
+    sample_mean <- mean(sample)#
+    sample_means[i,j] <- sample_mean#
+  }}
+sd(x)
+print(sd(x), digits=2)
+agreeS1<-seq(-4,2,.01)
+agreeS1<-seq(-4,2,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1)+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1)+(.19*agreeS1*(1))#
+## S2#
+#
+## define.#
+agreeS2<-seq(-3,2,.01)#
+#
+# slopes#
+compS2<-.01+(.04*agreeS2)+(.003*(-1))+(.21*(-1)*agreeS2)#
+coopS2<-.01+(.04*agreeS2)+(.003*(1))+(.21*(1)*agreeS2)
+define agreeableness range (based on zscored A)#
+agreeS1<-seq(-4,2,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1))+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1))+(.19*agreeS1*(1))#
+## S2#
+#
+## define.#
+agreeS2<-seq(-3,2,.01)#
+#
+# slopes#
+compS2<-.01+(.04*agreeS2)+(.003*(-1))+(.21*(-1)*agreeS2)#
+coopS2<-.01+(.04*agreeS2)+(.003*(1))+(.21*(1)*agreeS2)
+plot(agreeS1,compS1, type="l", lty=3, col="black", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")
+define agreeableness range (based on zscored A)#
+agreeS1<-seq(-4,4,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1))+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1))+(.19*agreeS1*(1))#
+## plot#
+#
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")
+agreeS1<-seq(-4,2,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1))+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1))+(.19*agreeS1*(1))#
+## plot#
+#
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1. c("Competition", "Cooperation"), lty(c(3,1)), col=c("red","black"))
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty(c(3,1)), col=c("red","black"))
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+agreeS2<-seq(-3,2,.01)#
+#
+# slopes#
+compS2<-.01+(.04*agreeS2)+(.003*(-1))+(.21*(-1)*agreeS2)#
+coopS2<-.01+(.04*agreeS2)+(.003*(1))+(.21*(1)*agreeS2)#
+#
+plot(agreeS2,compS2, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS2,coopS2, type="l", lty=1, col="black")#
+legend(-3,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+intercept<-(-2.016)#
+offense<-.48#
+d1<-.632#
+d2<-.179
+single<-intercept+(offense*3.36)+(d1*0)+(d2*0)#
+relationship<-intercept+(offense*3.36)+(d1*1)+(d2*0)#
+married<-intercept+(offense*3.36)+(d1*0)+(d2*1)
+single_p <- ((exp(single))/1-(exp(single)))#
+relationship_p <- ((exp(relationship))/1-(exp(relationship)))#
+married_p <- ((exp(married))/1-(exp(married)))#
+#
+c(single_p,relationship_p,married_p)
+single
+married
+relationship
+exp(single)
+exp(single)/1-exp(single)
+x=1-exp(single)
+x
+.668/.331
+x=exp(single)
+x
+x/(1-x)
+x/1-x
+single_p <- ((exp(single))/(1-(exp(single)))#
+relationship_p <- ((exp(relationship))/(1-(exp(relationship))))#
+married_p <- ((exp(married))/(1-(exp(married))))#
+#
+c(single_p,relationship_p,married_p)
+single_p <- ((exp(single))/(1-(exp(single))))#
+relationship_p <- ((exp(relationship))/(1-(exp(relationship))))#
+married_p <- ((exp(married))/(1-(exp(married))))#
+#
+c(single_p,relationship_p,married_p)
+single_p <- ((exp(single))/(1+(exp(single))))#
+relationship_p <- ((exp(relationship))/(1+(exp(relationship))))#
+married_p <- ((exp(married))/(1+(exp(married))))#
+#
+c(single_p,relationship_p,married_p)
+??col
+?plot
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense
+thresh_single
+thresh_rel
+intercept<-(-2.016)#
+offense<-.48#
+d1<-.632#
+d2<-.179#
+#
+# thus, the equations for each group at the mean of offense (3.36) are:#
+#
+single_m<-intercept+(offense*3.36)+(d1*0)+(d2*0)#
+relationship_m<-intercept+(offense*3.36)+(d1*1)+(d2*0)#
+married_m<-intercept+(offense*3.36)+(d1*0)+(d2*1)#
+#
+# the probablities are then:#
+#
+single_pm <- ((exp(single_m))/(1+(exp(single_m))))#
+relationship_pm <- ((exp(relationship_m))/(1+(exp(relationship_m))))#
+married_pm <- ((exp(married_m))/(1+(exp(married_m))))#
+#
+c(single_pm,relationship_pm,married_pm)
+off_bex<-seq(0,9,.01)#
+#
+# define probabilities for each group#
+single<-intercept+(offense*off_bex)+(d1*0)+(d2*0)#
+relationship<-intercept+(offense*off_bex)+(d1*1)+(d2*0)#
+married<-intercept+(offense*off_bex)+(d1*0)+(d2*1)
+single_p <- ((exp(single))/(1+(exp(single))))#
+relationship_p <- ((exp(relationship))/(1+(exp(relationship))))#
+married_p <- ((exp(married))/(1+(exp(married))))
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment as a function of the offensiveness of the behavior")
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")
+size_bex <- length(off_bex)#
+lines(off_bex,rep(0.5, size_bex), type="l", col="black", lty=2)
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)
+lines(rep(thresh_single,size_s),seq(0,1,len=size_s), type="l", col="darkorchid4", lty=2)#
+lines(rep(thresh_rel,size_r),seq(0,1,len=size_r), type="l", col="turquoise4", lty=2)#
+lines(rep(thresh_mar,size_m),seq(0,1,len=size_m), type="l", col="orangered4", lty=2)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment as a function of the offensiveness of the behavior")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,.5, type="l", col="black", lty=4)
+lines(off_bex,rep(.5,size_bex, type="l", col="black", lty=4)
+)
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=4)
+Plot offensive behavior (on x) by the probability of reporting harrassment for the single group (on y) in orchid#
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment as a function of the offensiveness of the behavior")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=4)
+Create a variable to represent "EXTSCORE" along the x-axis#
+ext <- seq(-55,18,.01)#
+#
+# P(violence) as a function of EXTSCORE#
+# b0 = -.086#
+# b1 = .032#
+p_v <- exp(-.086 + ext*.032) / (1+exp(-.086 + ext*.032))#
+#
+# Plot ext (on x) by p_v (on y) in black#
+plot(ext,p_v, type="l", col="black", xlab="EXT score", ylab="P(violence)", main="Probability of committing violence as a function of EXT score")#
+#
+# Plot a dashed red horizontal line along the range of extscore at p = .05#
+size_ext <- length(ext)#
+lines(ext,rep(0.5, size_ext), type="l", col="red", lty=2)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the threshold#
+# Threshold = -b0 / b1#
+thresh <- .086/.032#
+size_p_v = length(p_v)#
+lines(rep(thresh,size_p_v),seq(0,1,len=size_p_v), type="l", col="blue", lty=2)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment as a function of the offensiveness of the behavior")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=4)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the thresholds of each group#
+# Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,1,len=size_s), type="l", col="darkorchid4", lty=2)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=4)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the thresholds of each group#
+# Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense#
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,.5,len=size_s), type="l", col="darkorchid4", lty=2)
+lines(rep(thresh_rel,size_r),seq(0,.5,len=size_r), type="l", col="turquoise4", lty=2)#
+lines(rep(thresh_mar,size_m),seq(0,.5,len=size_m), type="l", col="orangered4", lty=2)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=4)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the thresholds of each group#
+# Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense#
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,.5,len=size_s), type="l", col="darkorchid4", lty=1)#
+lines(rep(thresh_rel,size_r),seq(0,.5,len=size_r), type="l", col="turquoise4", lty=3)#
+lines(rep(thresh_mar,size_m),seq(0,.5,len=size_m), type="l", col="orangered4", lty=5)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=1)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the thresholds of each group#
+# Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense#
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,.5,len=size_s), type="l", col="darkorchid4", lty=3)#
+lines(rep(thresh_rel,size_r),seq(0,.5,len=size_r), type="l", col="turquoise4", lty=3)#
+lines(rep(thresh_mar,size_m),seq(0,.5,len=size_m), type="l", col="orangered4", lty=3)
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment")#
+#
+# add the in a relationship group in turquoise#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# add married people in orange#
+lines(off_bex,married_p,type="l",col="orangered")#
+#
+# Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=3)#
+#
+# Plot a dashed blue vertical line along the range of P(violence) at the thresholds of each group#
+# Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense#
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,.5,len=size_s), type="l", col="darkorchid4", lty=5)#
+lines(rep(thresh_rel,size_r),seq(0,.5,len=size_r), type="l", col="turquoise4", lty=5)#
+lines(rep(thresh_mar,size_m),seq(0,.5,len=size_m), type="l", col="orangered4", lty=5)
+intercept<-(-2.016)#
+offense<-.48#
+d1<-.632#
+d2<-.179
+single_m<-intercept+(offense*3.36)+(d1*0)+(d2*0)#
+relationship_m<-intercept+(offense*3.36)+(d1*1)+(d2*0)#
+married_m<-intercept+(offense*3.36)+(d1*0)+(d2*1)#
+#
+## Compute the probablities:#
+#
+single_pm <- ((exp(single_m))/(1+(exp(single_m))))#
+relationship_pm <- ((exp(relationship_m))/(1+(exp(relationship_m))))#
+married_pm <- ((exp(married_m))/(1+(exp(married_m))))#
+#
+## See what the probilities are:#
+#
+c(single_pm,relationship_pm,married_pm)
+Threshold = -b0 / b1#
+thresh_single <- (-intercept)/offense#
+thresh_rel <- (-(intercept+d1))/offense#
+thresh_mar <-(-(intercept+d2))/offense#
+#
+## See what those thresholds are:#
+c(thresh_single,thresh_rel,thresh_mar)
+off_bex<-seq(0,9,.01)#
+#
+## Next, compute the equations for each group in logit terms#
+## These are the same as above, except we've replaced the mean of offensive behavior with its entire range#
+#
+single<-intercept+(offense*off_bex)+(d1*0)+(d2*0)#
+relationship<-intercept+(offense*off_bex)+(d1*1)+(d2*0)#
+married<-intercept+(offense*off_bex)+(d1*0)+(d2*1)#
+#
+## Compute the probibilities:#
+#
+single_p <- ((exp(single))/(1+(exp(single))))#
+relationship_p <- ((exp(relationship))/(1+(exp(relationship))))#
+married_p <- ((exp(married))/(1+(exp(married))))#
+## Plot offensive behavior (on x) by the probability of reporting harrassment for each group#
+#
+# We'll start by plotting the single group:#
+plot(off_bex,single_p, type="l", col="darkorchid", xlab="Offensive Behavior", ylab="P(harrassment)", main="Probability of reporting sexual harrassment")#
+#
+# Add the line for people who are in a relationship:#
+lines(off_bex,relationship_p, type="l", col="turquoise2")#
+#
+# Add the line for people who are married:#
+lines(off_bex,married_p,type="l",col="orangered")
+Plot a dashed black horizontal line along the range of behavior at P = .5#
+size_bex <- length(off_bex)#
+lines(off_bex,rep(.5,size_bex), type="l", col="black", lty=3)#
+#
+# Finally, plot the thresholds as vertical lines for each group (remember you computed the thresholds already)#
+size_s<-length(single_p)#
+size_r<-length(relationship_p)#
+size_m<-length(married_p)#
+#
+lines(rep(thresh_single,size_s),seq(0,.5,len=size_s), type="l", col="darkorchid4", lty=5)#
+lines(rep(thresh_rel,size_r),seq(0,.5,len=size_r), type="l", col="turquoise4", lty=5)#
+lines(rep(thresh_mar,size_m),seq(0,.5,len=size_m), type="l", col="orangered4", lty=5)
+.4/(1-.4)
+.56/(1-.56)
+.44/(1-.44)
+A x Cond simple slopes.#
+#
+## S1.#
+#
+##define stuff.#
+#
+# define agreeableness range (based on zscored A)#
+agreeS1<-seq(-4,2,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1))+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1))+(.19*agreeS1*(1))#
+## plot#
+#
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))#
+## S2#
+#
+## define.#
+agreeS2<-seq(-3,2,.01)#
+#
+# slopes#
+compS2<-.01+(.04*agreeS2)+(.003*(-1))+(.21*(-1)*agreeS2)#
+coopS2<-.01+(.04*agreeS2)+(.003*(1))+(.21*(1)*agreeS2)#
+#
+plot(agreeS2,compS2, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS2,coopS2, type="l", lty=1, col="black")#
+legend(-3,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+define stuff.#
+#
+# define agreeableness range (based on zscored A)#
+agreeS1<-seq(-4,2,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1)+(.02*(-1))+(.19*agreeS1*(-1))#
+coopS1<-.03+(.10*agreeS1)+(.02*(1))+(.19*agreeS1*(1))#
+## plot#
+#
+plot(agreeS1,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+1
+agreeS1a<-seq(-1,1,.01)#
+#
+# define slopes (comp = -1; coop=1)#
+compS1<-.03+(.10*agreeS1a)+(.02*(-1))+(.19*agreeS1a*(-1))#
+coopS1<-.03+(.10*agreeS1a)+(.02*(1))+(.19*agreeS1a*(1))
+plot(agreeS1a,compS1, type="l", lty=3, col="red", xlab = "Agreeableness", ylab = "Status")#
+lines (agreeS1a,coopS1, type="l", lty=1, col="black")#
+legend(-4,-.1, c("Competition", "Cooperation"), lty=(c(3,1)), col=c("red","black"))
+require(metafor)#
+data<-read.csv("metaresults.csv")#
+head(data)#
+#
+# make an order variable#
+data$sorder<-seq(1,14,1)#
+# specify that values from single studies/condition are filled squares and combined estimates are grey#
+mark<-c(15,15,22,15,15,22,23,15,15,22,15,15,22,23)#
+#
+# make some labels that we might not actually use#
+traitlab<-c(" "," "," ","Agreeableness"," "," "," "," "," "," ","Extraversion"," "," "," ")#
+condlab<-c(" ","Compete"," "," ","Affiliate"," ","Overall "," ","Compete"," "," ","Affiliate"," ","Overall")#
+lab<-cbind(traitlab,condlab)#
+par(mar=c(4,4,1,2))
+forest(data$rho, ci.lb=data$cilow, ci.ub=data$cihigh, slab=paste(data$study,data$trait,data$condition), xlab="Correlation with Status", pch=mark, ilab=(lab), ilab.xpos=c(-5,-6.5), xlim=c(-16,6), at=c(-1,-.5,0,.5,1), atransf=exp, cex=.75, ylim=c(-1,27), alim=c(-1,1))
+library(foreign) 	# read SPSS files#
+library(lme4) 		# run unit-specific binary logistic mixed model#
+library(gee) 		# run population-average binary logistic model
+atlas2<-read.spss("ATLAS.sav",to.data.frame=T, use.value.labels=F)#
+head(atlas2)
+popavg.mod<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas2, na.action=na.omit, corstr="exchangeable", scale.fix=T)
+summary(popavg.mod)
+summary(popavg.mod, working.correlation=FALSE)
+summary(popavg.mod, $working.correlation=FALSE)
+?summary
+?gee
+class(summary(popavg.mod))
+?summary.gee
+help(summary.gee)
+print(summary.gee)
+print(summary.lm)
+debug(gee)
+popavg.mod<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas2, na.action=na.omit, corstr="exchangeable", scale.fix=T)
+library(foreign) 	# read SPSS files#
+library(lme4) 		# run unit-specific binary logistic mixed model#
+library(gee)
+atlas<-read.spss("ATLAS.sav", to.data.frame=T, use.value.labels=F)
+head9atlas
+head(atlas)
+us.mod1<-glmer(use0~intervention+(1|schoolid), family=binomial, data=atlas)
+install.packages("gee", dependencies = T)
+library(gee)
+?gee
+popav.mod1<-gee(use0~intervention, id=schoolid, data=atlas, corstr="exchangeable")
+summary(us.mod1)
+summary(popav.mod1)
+popav.mod1<-gee(use0~intervention, id=schoolid, data=atlas, corstr="exchangeable", scale.fix=T)
+popav.mod1<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+summary(us.mod1)
+exp(summary(us.mod1$fixef))
+exp(summary(us.mod1)$fixef)
+summary(us.mod1)$fixef
+names(summary(us.mod1))
+summary(us.mod1)coefficients$fixef
+summary(us.mod1)$coefficients$fixef
+exp(fixef(summary(us.mod1)))
+exp(fixef(us.mod1))
+exp(fixef(popav.mod1))
+names(summary(popav.mod1))
+names(summary(popav.mod1)$coefficients)
+summary(popav.mod1)$coefficients
+exp(summary(popav.mod1)$coefficients[,1])
+us.mod2<-glmer(use0~coachtol0+reasons0+(1|schoolid), family=binomial, data=atlas)#
+popav.mod2<-gee(use0~intervention+coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+summary(us.mod2)
+popav.mod2<-gee(use0~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+?glmer
+library(car)
+atlas$use0_r<-recode(atlas$use0,("0=1;1=0"))
+head(atlas)
+popav.mod2<-gee(use0_r~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+popav.mod3<-gee(use0_r~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+?gee
+popav.mod3<-gee(use0~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="unstructured", scale.fix=T)
+summary(popav.mod3)$coefficients
+summary(popav.mod3)
+popav.mod2<-gee(use0~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+summary(popav.mod2)
+popav.mod2<-gee(use0~coachtol0+reasons0, id=schoolid, family=binomial, data=atlas, corstr="exchangeable", scale.fix=T)
+summary(popav.mod2)$coefficients
+us.mod2<-glmer(use0~coachtol0+reasons0+(1|schoolid), family=binomial, data=atlas)
+summary(us.mod2)
+install.packages("devtools")
+library("devtools")
+intall_github("sckott/cowsay")
+install_github("sckott/cowsay")
+library("cowsay")
+say("catfact","cat")
+say("catfact","dog")
+say("catfact","stretchycat")
+say("catfact","facecat")
+say("catfact","cow")
+library(foreign) 	# read SPSS files#
+library(lme4) 		# run unit-specific binary logistic mixed model#
+# install.packages("gee",dependencies=T)#
+library(gee)
+atlas<-read.spss("ATLAS.sav", to.data.frame=T)#
+head(atlas)#
+#
+## Then, read it in without the value labels:#
+#
+# This will become important later, when we're using gee. It doesn't like#
+# that the DV (here, use0) has character labels, and it won't run if those labels are attached to the variable#
+atlas2<-read.spss("ATLAS.sav", to.data.frame=T, use.value.labels=F)#
+head(atlas2)
+null.mod<-glmer(use0~1+(1|schoolid), family=binomial, data=atlas)
+summary(null.mod)
+icc.use<- .4759 / (.4759+(pi^2/3))
+icce.use
+icc.use
+us.mod<-glmer(use0~intervention+(1|schoolid), family=binomial, data=atlas)#
+#
+summary(us.mod)
+exp(fixef(us.mod))
+popav.mod1a<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas, corstr="unstructured", scale.fix=T)
+popav.mod1b<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas2, corstr="unstructured", scale.fix=T)
+popav.mod2<-gee(use0~intervention, id=schoolid, family=binomial, data=atlas2, corstr="exchangeable", scale.fix=T)
+summary(popav.mod2)
+(summary(popav.mod2)$coefficients)
+(fixef(us.mod))
+exp(summary(popav.mod2)$coefficients[,1])
+library(cowsay)
+say("catfact",cat)
+say(catfact,cat)
+say(catfact,"cat")
+say("catfact","cat")
+say("catfact","cat")
+say("catfact","cat")
+say("catfact","cat")
+say("catfact","cat")
+say("catfact","cat")
+library(foreign)#
+library(nlme)#
+library(plyr)#
+nels<-read.spss("MLM_Lab 1_NELS88.sav", to.data.frame=TRUE)#
+head(nels)#
+### Full model w/ L2 predictors (from p. 15, 18 & 26):#
+## These vary quite a bit from what SPSS produced (the difference is in part - but not entirely - because the referent for school type is different)#
+## They're spot-on to the HLM resluts, though.#
+#
+## fit model:#
+model1<-lme(mathscore~timeonmath*schooltype, random=~timeonmath|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+## get EB estimates:#
+coef(model1)
+model<-lme(timeonmath~ses, random=~ses|Schoolid, data=nels, na.action=na.exclude, control=list(opt="optim"))#
+#
+# get the EB estimates for the gs:#
+coef(model)
+x<-summary(model)#
+#
+# then get the fixed estimate of the intercept:#
+# this is telling R to call the first instance [1] of the variable "fixed", which is in the table of coefficients ("coefficients") saved in the summary of the model ("x"). I know this because I used the command names(x), found something that looked like what I wanted (coefficients), got the names it had ((names(x$coefficients))), and picked the one I wanted.#
+int<-x$coefficients$fixed[1]#
+# in lme4, this is:#
+# int<-x$coefficients[1,1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")#
+#
+shrink#
+#
+# for fun, let's add in the number of participants in each school:#
+n<-summary(as.factor(nels$Schoolid))#
+shrink<-cbind(shrink,n)
+slopesints<- ddply(nels,.(Schoolid), function(nels){#
+	model2<-lm(timeonmath~ses,data=nels)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)#
+#
+shrink
+shrink$int2<-shrink[,1]-shrink$"OLS intercept"
+shrink
+atlas<-read.spss("ATLAS.sav", to.data.frame=T)
+library(nlme)
+head(atlas)
+model<-lme(STSE1~1,~1|schoolid,na.action=na.exclude)
+model<-lme(STSE1~1,~1|schoolid,na.action=na.exclude, data=atlas)
+# to do this, we'll save the summary of the model as an object:#
+x<-summary(model)#
+#
+# then get the fixed estimate of the intercept:#
+# this is telling R to call the first instance [1] of the variable "fixed", which is in the table of coefficients ("coefficients") saved in the summary of the model ("x"). I know this because I used the command names(x), found something that looked like what I wanted (coefficients), got the names it had ((names(x$coefficients))), and picked the one I wanted.#
+int<-x$coefficients$fixed[1]#
+# in lme4, this is:#
+# int<-x$coefficients[1,1]#
+#
+# and the fixed estimate of the slope:#
+slope<-x$coefficients$fixed[2]
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1]),(slope-coef(model)[,2])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int", "Shrinkage_Slop")
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1])))#
+colnames(shrink)<-c("EB intercept","EB slope", "Shrinkage_Int")
+shrink<-as.data.frame(cbind(coef(model),int-(coef(model)[,1])))#
+colnames(shrink)<-c("EB intercept", "Shrinkage_Int")
+shrink
+n<-summary(as.factor(atlas$schoolid))#
+shrink<-cbind(shrink,n)
+slopesints<- ddply(atlas,.(schoolid), function(atlas){#
+	model2<-lm(stse0~1,data=atlas)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)
+slopesints<- ddply(atlas,.(schoolid), function(atlas){#
+	model2<-lm(STSE1~1,data=atlas)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept","OLS slope")#
+#
+shrink<-cbind(shrink,slopesints)
+slopesints<- ddply(atlas,.(schoolid), function(atlas){#
+	model2<-lm(STSE1~1,data=atlas)#
+	coef(model2)#
+})#
+#
+colnames(slopesints)<-c("Schoolid","OLS intercept")#
+#
+shrink<-cbind(shrink,slopesints)
+shrink
+shrink$int2<-shrink[,1]-shrink$"OLS intercept"
+shrink
+shrink[order(n),]
+mean(shrink$"OLS intercept")
+mean(shrink$"EB intercept")
+int

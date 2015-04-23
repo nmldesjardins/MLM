@@ -1,0 +1,372 @@
+library(foreign)#
+#
+atlas<-read.spss("ATLAS.sav", to.data.frame=TRUE)#
+head(atlas)
+null<-lmer(coachtol0~1+(1|schoolid), data=atlas)#
+summary(null)
+library(foreign) # lets you read in SPSS files#
+library(lme4) # runs MLMs
+null<-lmer(coachtol0~1+(1|schoolid), data=atlas)#
+summary(null)
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas,na.action=na.omit)
+library(nlme)
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas,na.action=na.omit)
+summary(null2)
+null2<-lme(coachtol0~1,1|schoolid,data=atlas,na.action=na.omit)
+.337/(.337+1.155)
+icc<- .1138/(.1138+1.3345)#
+icc
+.337^2/((.337^2)+(1.155^2))
+x<-summary(null2)
+names(x)
+x$coefficients
+library(lmerTest)
+# First, run the model using lme4:#
+null<-lmer(coachtol0~1+(1|schoolid), data=atlas)#
+summary(null)
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas,na.action=na.omit)#
+summary(null2)
+?na.action
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(null2)
+icc2<-.337^2/((.337^2)+(1.155^2))#
+icc2
+model1<-lmer(coachtol0~use0+(use0|schoolid), data=atlas)#
+summary(model1)#
+#
+model1n<-lme(coachtol0~use0,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model1<-lmer(coachtol0~use0+(1|schoolid), data=atlas)#
+summary(model1)#
+#
+model1n<-lme(coachtol0~use0,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+# Next, let's add in the random slopes (and covariance between intercepts and slopes):#
+#
+model2<-lmer(coachtol0~use0+(use0|schoolid), data=atlas)#
+summary(model2)#
+#
+model2n<-lme(coachtol0~use0,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2n)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  return(1 - pchisq(diffneg2LL, dfneg2LL))#
+}
+deviance(model1,model2)
+deviance(model1n,model2n)
+3845.1-3848.1
+1-pchisq(3,2)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  return(diffneg2LL,dfneg2LL,1 - pchisq(diffneg2LL, dfneg2LL))#
+}
+deviance(model1,model2)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+print(paste("The -2LL difference is ", difneg2LL, "with ", dfneg2LL, "df, p = ", p))#
+}
+deviance(model1,model2)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", diffneg2LL, "with ", dfneg2LL, "df, p = ", p)))#
+}
+deviance(model1,model2)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3)))#
+}
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3))))#
+}
+deviance(model1,model2)
+deviance(model1,model2)#
+deviance(model1n,model2n)
+model3<-lmer(coachtol0~use0+(0+use0|schoolid), data=atlas)#
+summary(model3)
+deviance(model2,model3)
+deviance(model3,model2)
+model3<-lmer(coachtol0~use0*intervention+(use0|schoolid), data=atlas)#
+summary(model3)#
+#
+model3n<-lme(coachtol0~use0*intervention,~use0|schoolid,data=atlas,na.action=na.omit)#
+summary(model3n)
+deviance(model2,model3)
+L1pred<-lmer(coachtol0~SE0+(SE0|schoolid), data=atlas)#
+summary(L1pred)
+L1pred<-lmer(coachtol0~SE0+(0+SE0|schoolid), data=atlas)#
+summary(L1pred)
+rdnslp<-lmer(coachtol0~use0*intervention+(0+use0|schoolid), data=atlas)#
+summary(full)#
+#
+rdnslp<-lme(coachtol0~use0*intervention,~0+use0|schoolid,data=atlas,na.action=na.omit)#
+summary(fulln)
+summary(rdnslp)
+rdnslp<-lme(coachtol0~use0*intervention,~0+(as.numeric(use0)|schoolid,data=atlas,na.action=na.omit)#
+summary(fulln)
+rdnslp<-lme(coachtol0~use0*intervention,(~0+(as.numeric(use0))|schoolid,data=atlas,na.action=na.omit)
+model4<-lmer(coachtol0~use0*SE0+(use0*SE0|schoolid), data=atlas)
+sumary(model4)
+summary(model4)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)
+?lme
+model4n<-lme(coachtol0~use0*SE0,~SE0|schoolid, data=atlas, na.action = na.exclude)
+summary(model4n)
+model4n<-lme(coachtol0~use0*SE0,~use0+SE0|schoolid, data=atlas, na.action = na.exclude)
+summary(model4n)
+model4n<-lme(coachtol0~use0*SE0,~use0:SE0|schoolid, data=atlas, na.action = na.exclude)
+summary(model4n)
+summary(model4)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)
+model4n<-lme(coachtol0~use0*SE0,~SE0*use0|schoolid, data=atlas, na.action = na.exclude)
+summary(model4n)
+model4<-lmer(coachtol0~use0*SE0+(SE0*use0|schoolid), data=atlas)#
+summary(model4)
+model4<-lmer(coachtol0~use0*SE0+(use0|schoolid)+(SE0|schoolid), data=atlas)#
+summary(model4)
+library(foreign) # lets you read in SPSS files#
+library(lme4) # runs MLMs#
+library(lmerTest) # gets significance tests for lme4 models#
+library(nlme) # runs MLMs
+atlas<-read.spss("ATLAS.sav", to.data.frame=TRUE)#
+head(atlas)
+null<-lmer(coachtol0~1+(1|schoolid), data=atlas)#
+summary(null)
+icc<- .1138/(.1138+1.3345)#
+icc
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(null2)
+icc2<-.337^2/((.337^2)+(1.155^2))#
+icc2
+model1<-lmer(coachtol0~use0+(1|schoolid), data=atlas)#
+summary(model1)
+model2<-lmer(coachtol0~use0+(use0|schoolid), data=atlas)#
+summary(model2)
+atlas$use<-as.numeric(atlas$use0)
+model1a<-lmer(coachtol0~use+(1|schoolid), data=atlas)#
+summary(model1a)
+str(atlas$use0)
+summary(atlas$use0)
+summary(atlas$use)
+str(atlas$use)
+str(atlas$use0=="No")
+str(atlas$use0=="Yes"")
+str(atlas$use0=="Yes")
+summary(atlas$use0=="Yes")
+atlast$user<-recode(atlas$use0, "1=0; 2=1")
+library(car)
+atlast$user<-recode(atlas$use0, "1=0; 2=1")
+atlas$user<-recode(atlas$use0, "1=0; 2=1")
+str(atlas$user)
+summary(atlas$user)
+summary(atlas$user==1)
+summary(atlas$user==0)
+model2a<-lmer(coachtol0~use+(use|schoolid), data=atlas)#
+summary(model2a)
+summary(model2)
+model2b<-lmer(coachtol0~user+(user|schoolid), data=atlas)#
+summary(model2b)
+model1n<-lme(coachtol0~use0,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model1n<-lme(coachtol0~use,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model1n<-lme(coachtol0~user,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model2n<-lme(coachtol0~use0,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2n)
+model2na<-lme(coachtol0~use,~use|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2na)
+model2nb<-lme(coachtol0~user,~user|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2nb)
+cbind(atlas$user,atlas$use, atlas$use0)
+summary(atlas$user)
+atlas$user<-C(atlas$use0)
+head(atlas$user)
+cbind(atlas$user,atlas$use, atlas$use0)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3))))#
+}
+deviance(model1,model2)
+model3<-lmer(coachtol0~use0*intervention+(use0|schoolid), data=atlas)#
+summary(model3)
+deviance(model2,model3)
+summary(model2)
+model4<-lmer(coachtol0~use0*SE0+(use0*SE0|schoolid), data=atlas)#
+summary(model4)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+lmeControl(maxIter=100)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+library(foreign) # lets you read in SPSS files#
+library(lme4) # runs MLMs#
+library(lmerTest) # gets significance tests for lme4 models#
+library(nlme) # runs MLMs
+atlas<-read.spss("ATLAS.sav", to.data.frame=TRUE)#
+head(atlas)
+null<-lmer(coachtol0~1+(1|schoolid), data=atlas)#
+summary(null)
+icc<- .1138/(.1138+1.3345)#
+icc
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas)#
+summary(null2)
+null2<-lme(coachtol0~1,~1|schoolid,data=atlas, na.action=na.exclude)#
+summary(null2)
+icc2<-.337^2/((.337^2)+(1.155^2))#
+icc2
+model1<-lmer(coachtol0~use0+(1|schoolid), data=atlas)#
+summary(model1)
+model1n<-lme(coachtol0~use0,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model2<-lmer(coachtol0~use0+(use0|schoolid), data=atlas)#
+summary(model2)
+model2n<-lme(coachtol0~use0,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2n)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3))))#
+}
+deviance(model1,model2)
+deviance(model1a,model2n)
+deviance(model1n,model2n)
+anova.lme(model1)
+anova.lme(model1n)
+model3<-lmer(coachtol0~use0*intervention+(use0|schoolid), data=atlas)#
+summary(model3)
+model3n<-lme(coachtol0~use0*intervention,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model3n)
+deviance(model2,model3)
+model4<-lmer(coachtol0~use0*SE0+(use0*SE0|schoolid), data=atlas)#
+summary(model4)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+library(foreign) # lets you read in SPSS files#
+library(lme4) # runs MLMs#
+library(lmerTest) # gets significance tests for lme4 models#
+library(nlme) # runs MLMs
+atlas<-read.spss("ATLAS.sav", to.data.frame=TRUE)#
+head(atlas)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, nmleControl(maxIter = 100))
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, nlmeControl(maxIter = 100))
+nlmeControl(maxIter = 100)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, nlmeControl(maxIter = 100))
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)
+nlmeControl(maxIter = 100, pnlsMAxIter = 50, mxMaxIter = 100, niterEM= 50)
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude)
+?lmerControl
+model4<-lmer(coachtol0~use0*SE0+(use0*SE0|schoolid), data=atlas, control=lmerControl(optCtrl=list(maxfun=200)))
+model4<-lmer(coachtol0~use0*SE0+(use0*SE0|schoolid), data=atlas, control=lmerControl(optCtrl=list(maxfun=20000)))
+summary(model4)
+model5<-lmer(coachtol0~use0*SE0+(use0:SE0|schoolid), data=atlas
+)
+summary(model5)
+model5<-lmer(coachtol0~use0*SE0+(0+use0*SE0|schoolid), data=atlas)
+summary(model5)
+model5<-lmer(coachtol0~use0*SE0+(0+use0:SE0|schoolid), data=atlas)
+summary(model5)
+model5<-lmer(coachtol0~use0*SE0+(0+use0|schoolid)+(SE0|schoolid), data=atlas)
+summary(model5)
+?C
+?pdMatrix
+model5<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, pdMatrix=pdDiag)
+model5<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, pdClasses=pdDiag)
+model5<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, control=lmeControl(pdMatrix=pdDiag))
+model5<-lme(coachtol0~use0*SE0,~use0+SE0|schoolid, data=atlas, na.action = na.exclude, control=lmeControl(pdMatrix=pdDiag))
+summary(model5)
+names(summary(model5))
+summary(model5)$modelStruct
+model4n<-lme(coachtol0~use0*SE0,~use0*SE0|schoolid, data=atlas, na.action = na.exclude, control=nlmeControl(maxIter = 100, pnlsMAxIter = 50, mxMaxIter = 100, niterEM= 50))
+atlas$useXse<-(atlas$use0*atlas$SE0)
+atlas$useXse<-(atlas$use0:atlas$SE0)
+atlas$useXse<-(atlas$use0:atlas$SE0,na.rm=T)
+head(atlas)
+atlas$useXse<-(as.numeric(atlas$use0)*atlas$SE0,)
+atlas$useXse<-(as.numeric(atlas$use0)*atlas$SE0)
+head(atlas)
+model5<-lmer(coachtol0~use0*SE0+(SE0|schoolid)+(0+use0|schoolid)+(0+useXse|schoolid), data=atlas)#
+summary(model5)
+model5<-lmer(coachtol0~use0*SE0+(1|schoolid)(0+SE0|schoolid)+(0+use0|schoolid)+(0+useXse|schoolid), data=atlas)#
+summary(model5)
+model5<-lmer(coachtol0~use0+SE0+useXse+(1|schoolid)(0+SE0|schoolid)+(0+use0|schoolid)+(0+useXse|schoolid), data=atlas)#
+summary(model5)
+model4n<-lme(coachtol0~use0+SE0+useXse,~1|schoolid + use0|schoolid + SE0|schoolid + useXse|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lme(coachtol0~use0+SE0+useXse,~1+use0+SE0+useXse|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lme(coachtol0~use0+SE0+useXse,((~1|schoolid) + (~0+use0|schoolid) + (~0+SE0|schoolid) + (~0+useXse|schoolid)), data=atlas, na.action = na.exclude)
+model4n<-lme(coachtol0~use0+SE0+useXse,((~1|schoolid), (~0+use0|schoolid), (~0+SE0|schoolid), (~0+useXse|schoolid)), data=atlas, na.action = na.exclude)
+model5<-lmer(coachtol0~use0+SE0+useXse+(1|schoolid)+(0+SE0|schoolid)+(0+use0|schoolid)+(0+useXse|schoolid), data=atlas)#
+summary(model5)
+model5<-lmer(coachtol0~1+use0+SE0+use0*SE0+(1|schoolid)+(0+SE0|schoolid)+(0+use0|schoolid)+(0+use0*SE0|schoolid), data=atlas)#
+summary(model5)
+model4n<-lme(coachtol0~SE0,~SE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+head(atlas)
+model4n<-lme(coachtol0~SE0+STSEO,~SE0+STSEO|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lme(coachtol0~SE0+STSE0,~SE0+STSE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lme(coachtol0~SE0+STSE0,~0+SE0+STSE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lme(coachtol0~SE0+STSE0,~+SE0+STSE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0+STSE0+(SE0|schoolid)+(0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0+STSE0+(0+SE0|schoolid)+(0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0+STSE0+(1|schoolid)+(0+SE0|schoolid)+(0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0+STSE0+(SE0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0*STSE0+(SE0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0*STSE0+(1|schoolid)+(0+SE0|schoolid)+(0+STSE0|schoolid), data=atlas)#
+summary(model4n)
+model4n<-lmer(coachtol0~SE0*STSE0+(1|schoolid)+(0+SE0|schoolid)+(0+STSE0|schoolid)+(0+SE0*STSE0|schoolid), data=atlas)#
+summary(model4n)
+atlas$sexst<-(atlas$SE0*atlas$STSE0)
+model4n<-lmer(coachtol0~SE0+STSE0+sexst+(1|schoolid)+(0+SE0|schoolid)+(0+STSE0|schoolid)+(0+sexst|schoolid), data=atlas)#
+summary(model4n)
+model5<-lmer(coachtol0~use0+SE0+useXse+(1|schoolid)+(0+SE0|schoolid)+(0+use0|schoolid)+(0+useXse|schoolid), data=atlas)#
+summary(model5)
+model5<-lmer(coachtol0~use0*SE0+(use0+SE0|schoolid), data=atlas)#
+summary(model5)#
+#
+model5n<-lme(coachtol0~use0*SE0,~use0+SE0|schoolid, data=atlas, na.action = na.exclude)#
+summary(model5n)
+model8<-lmer(coachtol0~use0*SE0+(0+use0*SE0|schoolid), data=atlas)#
+summary(model8)
+model1<-lmer(coachtol0~use0+(1|schoolid), data=atlas)#
+summary(model1)
+model2<-lmer(coachtol0~use0+(use0|schoolid), data=atlas)#
+summary(model2)
+deviance(model1,model2)
+deviance <- function(a, b) {#
+  diffneg2LL <- (-2*as.numeric(logLik(a))) - (-2*as.numeric(logLik(b)))#
+  dfneg2LL <- (attr(logLik(b), "df") - attr(logLik(a), "df"))#
+  p<-(1 - pchisq(diffneg2LL, dfneg2LL))#
+return(print(paste("The -2LL difference is ", round(diffneg2LL, digits=3), "with ", dfneg2LL, "df, p = ", round(p, digits=3))))#
+}
+deviance(model1,model2)
+anova(model1,model2)
+model1n<-lme(coachtol0~use0,~1|schoolid,data=atlas,na.action=na.exclude)#
+summary(model1n)
+model2n<-lme(coachtol0~use0,~use0|schoolid,data=atlas,na.action=na.exclude)#
+summary(model2n)
+anova(model1n,model2n)

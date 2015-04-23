@@ -1,0 +1,345 @@
+summary()
+summary(y)
+summary(InstEval$y)
+nels<-read.spss("NELS88.sav", to.data.frame=T)#
+#
+head(nels)#
+summary(nels)
+nels$meanSES<-ave(nels$ses,Schoolid)
+nels$meanSES<-ave(nels$ses,nels$Schoolid)
+head(nels)
+mod1<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=nels)
+summary(mod1)
+plot(resid(mod1)~fitted(mod1))
+qqnorm(resid(mod1))
+?boxplot
+boxplot(resid(mod1)~Schoolid)
+boxplot(resid(mod1)~nels$Schoolid)
+hist(resid(mod1))
+hist(scale(resid(mod1)))
+plot(resid(mod1)~nels$timeonmath)
+plot(resid(mod1)~nels$parented)
+?resid
+# OR#
+hist(resid(mod1, scaled=T))
+plot(resid(mod1)~meanSES | Schoolid, abline=0)
+plot(resid(mod1)~nels$meanSES | nels$Schoolid, abline=0)
+coef$mod1
+mod1$coef
+summary(mod1)$coef
+coef(mod1)
+plot(resid(coef(mod1)~nels$meanSES, abline=0)
+)
+plot(resid(coef(mod1)~nels$meanSES))
+plot(coef(mod1)~nels$meanSES, abline=0)
+head(resid(mod1))
+head(fitted(mod1))
+length(fitted(mod1))
+l2eb<-coef(mod1)
+l2eb
+summary(mod1)
+(l2eb[,1]
+)
+l2eb<-as.data.frame(coef(mod1))
+plot(l2eb$"(Intercept)"~nels$meanSES)
+l2eb$(Intercept)
+l2eb$""(Intercept)""
+l2eb$"(Intercept)"
+l2eb
+names(l2eb)
+names(l2eb$Schoolid)
+plot(l2eb$Schoolid$"(Intercept)"~nels$meanSES)
+plot(l2eb$Schoolid$"(Intercept)"~l2eb$Schoolid$meanSES)
+mod1<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=ne
+ls)
+mod1<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=nels)
+head(resid(mod1))
+resid(mod1)
+boxplot(resid(mod1)~nels$Schoolid)
+summary(resid(mod1))
+by(nels$Schoolid,summary(resid(mod1)))
+plot(resid(mod1, scaled=T)~fitted(mod1))
+plot(resid(mod1, scaled=T)~fitted(mod1), abline=0)
+plot(resid(mod1)~nels$timeonmath)
+plot(resid(mod1)~nels$parented)
+plot(l2eb$Schoolid$"(Intercept)"~l2eb$Schoolid$meanSES)
+plot(l2eb$Schoolid$"(Intercept)"~nels$meanSES)
+x<-cbind(l2eb,nels$meanSES)
+head(x)
+x<-as.data.frame(cbind(l2eb,nels$meanSES))
+x
+head(x)
+summary(as.factor(nels$meanSES))
+x<-as.data.frame(summary(as.factor(nels$meanSES)))
+x
+names(x)
+l2eb<-as.data.frame(coef(mod1))
+l2eb<-coef(mod1)
+x2<-cbind(l2eb,x)
+x2<-cbind(l2eb,x[,1])
+x2
+head(l2eb)
+colnames(l2eb)<-c("Schoolid", "Int", "time", "meanSES")
+colnames(l2eb$Schoolid)<-c("Schoolid", "Int", "time", "meanSES")
+library(nlme)
+mod2<- lme(mathscore ~ timeonmath + meanSES, ~timeonmath|Schoolid, data=nels, na.action = na.exclude)
+l2eb<-coef(mod2)#
+colnames(l2eb)<-c("Schoolid", "Int", "time", "meanSES")
+l2eb
+plot(l2eb$"(Intercept)"~nels$meanSES)
+grpm<-ave(nels$ses, nels$Schoolid)
+head(grpm)
+unique(grmp)
+unique(grpm)
+l2eb<-cbind(l2eb,unique(grpm))
+l2eb
+plot(l2eb$"(Intercept)"~l2eb$"unique(grpm)")
+plot(l2eb$timeonmath~l2eb$"unique(grpm)")
+install.packages("HLMdiag", dependencies = T)
+?HLMresid
+library(HLMdiag)
+?HLMresid
+library(foreign)
+nels<-read.spss("NELS88.sav", to.data.frame=T)
+nels$meanSES<-ave(nels$ses,nels$Schoolid)#
+mod1<- lme(mathscore ~ timeonmath + meanSES, ~timeonmath|Schoolid, data=nels, na.action = na.exclude)
+library(nlme)
+nels$meanSES<-ave(nels$ses,nels$Schoolid)#
+mod1<- lme(mathscore ~ timeonmath + meanSES, ~timeonmath|Schoolid, data=nels, na.action = na.exclude)
+?boxplot
+?plot
+plot(resid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+?hist
+?qqnorm
+qqnorm(resid(mod1))
+plot(resid(mod1)~nels$parented, xlab= "Parent Education", ylab= "L1 Residuals")
+l2eb<-coef(mod1)#
+grpm<-ave(nels$ses, nels$Schoolid)#
+l2eb<-cbind(l2eb,unique(grpm))
+head(l2eb)
+colnames(l2eb)<-c("Schoolid","EB.Intercept","EB.timeonmath","EB.meanSES","grp.meanSES")
+colnames(l2eb)<-c("EB.Intercept","EB.timeonmath","EB.meanSES","grp.meanSES")
+head(l2eb)
+plot(l2eb$EB.timeonmath~l2eb$grp.meanSES, xlab="EB Slopes", ylab="Mean SES")
+qqplot(l2eb$EB.INtercept)
+qqplot(l2eb$EB.Intercept)
+mod2<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=nels, na.action = na.exclude)
+hlmresid<-HLMresid(mod2, level = 1)
+head(hlmresid)
+head(resid(mod2))
+head(HLMresid(mod2, level=1, type="LS"))
+plot(HLMresid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+plot(HLMresid(mod2)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+plot(HLMresid(mod2, leve=1)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+plot(HLMresid(mod2, level=1, type="LS")~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+p1<-qplot(x=resid1b$fitted, y = resid1b$LS.resid,#
++ geom= c("point", "smooth")) + ylab("LS level-1 residuals")
+library(ggplot2)
+p1<-qplot(x=resid1b$fitted, y = resid1b$LS.resid,+ geom=c("point", "smooth")) + ylab("LS level-1 residuals")
+p1<-qplot(x=resid1b$fitted, y = resid1b$LS.resid)#
+p1 + geom_point()+ geom_hline(yintercept=0, linetype="dotted") + #
+theme_bw() + ylab("L1 OLS Residuals")
+resid1b<-HLMresid(mod2, level=1, type="LS"))#
+head(resid1b)
+resid1b<-HLMresid(mod2, level=1, type="LS"))
+resid1b<-HLMresid(mod2, level=1, type="LS")
+head(resid1b)
+p1<-qplot(x=resid1b$fitted, y = resid1b$LS.resid)#
+p1 + geom_point()+ geom_hline(yintercept=0, linetype="dotted") + #
+theme_bw() + ylab("L1 OLS Residuals")
+resid1b<-HLMresid(mod2, level=1, type="LS", standardize = T)#
+head(resid1b)
+p2<- ggplot_ggnorm(x = resid1b$std.resid, line="rlm")
+p2<- ggplot_qqnorm(x = resid1b$std.resid, line="rlm")
+p2
+resid2<-HLMresid(mod2, level = "Schoolid")
+head(resid2)
+ranef(mod2)
+coef(mod2)
+summary(mod2)
+54.89229-47.553
+ranef(mod2)
+ranef(mod1)
+l2eb2<-ranef(mod1)#
+l2eb2<-cbind(l2eb2,unique(grpm))#
+colnames(l2eb2)<-c("EB.Intercept","EB.timeonmath","grp.meanSES")#
+head(l2eb2)
+plot(l2eb2$EB.Intercept~l2eb2$grp.meanSES, ylab= "EB Intercepts", xlab = "Mean SES")
+plot(l2eb$EB.Intercept~l2eb$grp.meanSES, ylab= "EB Intercepts", xlab = "Mean SES")
+qqplot(l2eb2$EB.Intercept)
+qqplot(ranef(mod2))
+qqplot(ranef(mod2[,1]))
+qqplot(ranef(mod1[,1]))
+qqplot(ranef(mod1[,2]))
+ggplot_qqnorm(x = l2eb2[,"EB.Intercept"], line = "rlm")
+ggplot_qqnorm(x = l2eb[,"EB.timeonmath"], line = "rlm")
+ggplot_qqnorm(x = l2eb2[,"EB.timeonmath"], line = "rlm")
+resid2<-HLMresid(mod2, level = "Schoolid")
+head(resid2)
+# QQ plot of slope:#
+ggplot_qqnorm(x = resid2[,"timeonmath"], line = "rlm")
+resid1b<-HLMresid(mod2, level=1, type="LS", standardize = T)#
+head(resid1b)
+head(resid1a)
+resid1a<-HLMresid(mod2, level = 1)
+head(resid1a)
+plot(x=resid1b$LS.resid, y = resid1a, xlab="OLS residuals", ylab="EB residuals")
+p1<-qplot(x=resid1b$fitted, y = resid1b$LS.resid)#
+p1 + geom_point()+ geom_hline(yintercept=0, linetype="dotted") + #
+theme_bw() + ylab("L1 OLS Residuals") + xlab("L1 Fitted Values")
+library(foreign)#
+library(lme4)
+data<-read.spss("perception data.sav", to.data.frame=T, use.value.labels = F)#
+head(data)#
+summary(data)
+xtabs(~percid + targid, data=data)
+model1<- lmer(perc_emo~1 + (1|percid) + (1|targid), data=data)#
+summary(model1)#
+#
+### Get ICCs:#
+as.data.frame(VarCorr(model1))#
+p_var<-as.data.frame(VarCorr(model1))[1,4]#
+t_var<-as.data.frame(VarCorr(model1))[2,4]#
+err_var<-as.data.frame(VarCorr(model1))[3,4]#
+#
+tot_var<-p_var+t_var+err_var#
+#
+p_ICC<-p_var/tot_var#
+t_ICC<-t_var/tot_var#
+#
+p_ICC*100#
+t_ICC*100
+model2<- lmer(perc_emo ~ valence + (1|percid) + (1|targid), data=data)#
+summary(model2)#
+#
+### Add a target predictor:#
+## 	Does the target's gender influence perceptions of their emotions?#
+#
+model3<- lmer(perc_emo ~ actual_emo + (1|percid) + (1|targid), data=data)#
+summary(model3)
+library(foreign)#
+library(ggplot2)#
+library(nlme)	# I'm switching to
+nels<-read.spss("NELS88.sav", to.data.frame=T)#
+#
+head(nels)#
+summary(nels)
+nels$meanSES<-ave(nels$ses,nels$Schoolid)#
+mod1<- lme(mathscore ~ timeonmath + meanSES, ~timeonmath|Schoolid, data=nels, na.action = na.exclude)
+## boxplot of residuals by school (p. 14)#
+boxplot(resid(mod1)~nels$Schoolid)
+boxplot(resid(mod1)~nels$Schoolid, ylab="Residuals", xlab="School")
+plot(resid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+hist(scale(resid(mod1)), main= "Distribution of L1 Residuals")
+hist(scale(resid(mod1)), main= "Distribution of L1 Residuals", xlab="Standardlized L2 Residuals")
+qqnorm(resid(mod1))
+plot(resid(mod1)~nels$timeonmath, xlab="Math Homework", ylab="L1 Residuals")
+plot(resid(mod1)~nels$parented, xlab= "Parent Education", ylab= "L1 Residuals")
+l2eb<- ranef(mod1)
+grpm<-ave(nels$ses, nels$Schoolid)#
+l2eb<-cbind(l2eb,unique(grpm))#
+colnames(l2eb)<-c("EB.Intercept","EB.timeonmath","grp.meanSES")#
+head(l2eb)
+plot(l2eb$EB.Intercept~l2eb$grp.meanSES, ylab= "EB Intercepts", xlab = "Mean SES")
+plot(l2eb$EB.timeonmath~l2eb$grp.meanSES, ylab="EB Slopes", xlab="Mean SES")
+l2eb<-coef(mod1)
+head(l23b)
+head(l2eb)
+colnames(l2eb)<-c("EB.Intercept.Est","EB.timeonmath.Est","meanSES.Est")#
+head(l2eb)
+head(fitted(mod1))
+plot(l2eb.res$EB.Intercept~l2eb$EB.Intercept.Est)
+# recall:#
+l2eb<-coef(mod1) # gives you the EB estimates of the betas#
+colnames(l2eb)<-c("EB.Intercept.Est","EB.timeonmath.Est","meanSES.Est")#
+head(l2eb)#
+#
+# for the residuals, we want the difference between those estimates and the model estiamtes:#
+l2eb.res<- ranef(mod1)#
+#
+# we'll get the mean SES for each school, which will be used as a predictor:#
+grpm<-ave(nels$ses, nels$Schoolid)#
+l2eb.res<-cbind(l2eb.res,unique(grpm))#
+colnames(l2eb.res)<-c("EB.Intercept","EB.timeonmath","grp.meanSES")#
+head(l2eb.res)
+plot(l2eb.res$EB.Intercept~l2eb$EB.Intercept.Est)
+resid2<-HLMresid(mod2, level = "Schoolid")
+mod2<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=nels, na.action = na.exclude)
+resid2<-HLMresid(mod2, level = "Schoolid")
+head(resid2)
+plot(l2eb.res$EB.timeonmath~l2eb$EB.timeonmath.Est)
+lot(resid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+plot(resid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+plot(resid(mod1)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+head(resid(mod1))
+head(fitted(mod1))
+plot(l2eb.res$EB.Intercept~l2eb.res$grp.meanSES, ylab= "EB Intercepts", xlab = "Mean SES")
+plot(l2eb.res$EB.Intercept~l2eb$EB.Intercept.Est)
+plot(l2eb.res$EB.timeonmath~l2eb$EB.timeonmath.Est,ylab="EB Residuals - Slope", xlab="EB Slope")
+# QQ Plot of the intercept:#
+ggplot_qqnorm(x = l2eb.res[,"EB.Intercept"], line = "rlm")
+library(foreign)#
+library(lme4)
+data<-read.spss("perception data.sav", to.data.frame=T, use.value.labels = F)#
+head(data)
+summary(data)
+xtabs(~percid + targid, data=data)
+model1<- lmer(perc_emo~1 + (1|percid) + (1|targid), data=data)#
+summary(model1)
+as.data.frame(VarCorr(model1))
+p_var<-as.data.frame(VarCorr(model1))[1,4]#
+t_var<-as.data.frame(VarCorr(model1))[2,4]#
+err_var<-as.data.frame(VarCorr(model1))[3,4]
+tot_var<-p_var+t_var+err_var
+p_ICC<-p_var/tot_var#
+t_ICC<-t_var/tot_var#
+#
+p_ICC*100#
+t_ICC*100
+model2<- lmer(perc_emo ~ valence + (1|percid) + (1|targid), data=data)#
+summary(model2)
+model3<- lmer(perc_emo ~ actual_emo + (1|percid) + (1|targid), data=data)#
+summary(model3)
+library(foreign)#
+library(ggplot2)#
+library(nlme)	# I'm switching to nlme here because the EB estimates
+nels<-read.spss("NELS88.sav", to.data.frame=T)#
+#
+head(nels)
+nels$meanSES<-ave(nels$ses,nels$Schoolid)
+mod1<- lme(mathscore ~ timeonmath + meanSES, ~timeonmath|Schoolid, data=nels, na.action = na.exclude)
+boxplot(resid(mod1)~nels$Schoolid, ylab="Residuals", xlab="School")
+plot(resid(mod1, scaled=T)~fitted(mod1), xlab="Predicted Values", ylab="Standardized Residuals")
+hist(scale(resid(mod1)), main= "Distribution of L1 Residuals", xlab="Standardlized L2 Residuals")
+qqnorm(resid(mod1))
+plot(resid(mod1)~nels$timeonmath, xlab="Math Homework", ylab="L1 Residuals")
+plot(resid(mod1)~nels$parented, xlab= "Parent Education", ylab= "L1 Residuals")
+l2eb<-coef(mod1) # gives you the EB estimates of the betas#
+colnames(l2eb)<-c("EB.Intercept.Est","EB.timeonmath.Est","meanSES.Est")#
+head(l2eb)
+summary(mod1)
+l2eb.res<- ranef(mod1)
+grpm<-ave(nels$ses, nels$Schoolid)#
+l2eb.res<-cbind(l2eb.res,unique(grpm))#
+colnames(l2eb.res)<-c("EB.Intercept","EB.timeonmath","grp.meanSES")#
+head(l2eb.res)
+plot(l2eb.res$EB.Intercept~l2eb$EB.Intercept.Est, ylab="EB Residuals - Intercept", xlab="EB Intercept")
+plot(l2eb.res$EB.timeonmath~l2eb$EB.timeonmath.Est,ylab="EB Residuals - Slope", xlab="EB Slope")
+plot(l2eb.res$EB.Intercept~l2eb.res$grp.meanSES, ylab= "EB Residuals - Intercept", xlab = "Mean SES")
+ggplot_qqnorm(x = l2eb.res[,"EB.Intercept"], line = "rlm")
+library(ggplot2)
+ggplot_qqnorm(x = l2eb.res[,"EB.Intercept"], line = "rlm")
+?ggplot_qqnorm
+?ggplot
+library(HLMdiag)
+install.packages("HLMdiag", dependencies=T)
+library(HLMdiag)
+ggplot_qqnorm(x = l2eb.res[,"EB.Intercept"], line = "rlm")
+resid1b<-HLMresid(mod2, level=1, type="LS", standardize = T)#
+head(resid1b)
+mod2<- lmer(mathscore ~ timeonmath + meanSES + (timeonmath|Schoolid), data=nels, na.action = na.exclude)
+resid1b<-HLMresid(mod2, level=1, type="LS", standardize = T)#
+head(resid1b)
+# Option 1: get EB residuals -- these are identical to using resid()#
+resid1a<-HLMresid(mod2, level = 1)
+plot(x=resid1b$LS.resid, y = resid1a, xlab="OLS residuals", ylab="EB residuals")
